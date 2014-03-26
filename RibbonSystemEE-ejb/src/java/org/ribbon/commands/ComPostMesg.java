@@ -23,37 +23,37 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.persistence.*;
-import org.ribbon.jpa.JPAManager;
 import org.ribbon.jpa.enteties.*;
+import org.ribbon.beans.*;
+import javax.ejb.EJB;
 
 /**
  * POST_MESG command class.
  * @author Stanislav Nepochatov
  */
 public class ComPostMesg implements Command {
+    
+    @EJB
+    private UserBean usrBean;
+    
+    @EJB
+    private DirectoryBean dirBean;
+    
+    @EJB
+    private MessageBean mesgBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = JPAManager.getEntityManager();
-        EntityTransaction tr = em.getTransaction();
-        tr.begin();
         Message posted = new Message();
         posted.setHeader(request.getParameter("header"));
-        TypedQuery<Directory> qr1 = em.createNamedQuery("Directory.findByPath", Directory.class);
-        qr1.setParameter("path", request.getParameter("directory"));
-        Directory findedDIr = qr1.getSingleResult();
+        Directory findedDIr = dirBean.findByPath(request.getParameter("directory"));
         posted.setDirId(findedDIr);
         posted.setPostDate(new Date());
-        TypedQuery<User> qr2 = em.createNamedQuery("User.findByLogin", User.class);
-        qr2.setParameter("login", request.getSession().getAttribute("username"));
-        User findedUser = qr2.getSingleResult();
+        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
         posted.setAuthId(findedUser);
         posted.setIsUrgent("urgent".equals(request.getParameter("urgent")));
         posted.setBody(request.getParameter("body"));
-        em.persist(posted);
-        tr.commit();
-        em.close();
+        mesgBean.create(posted);
         return "/Ribbon?command=LIST_MESG&dirid=" + request.getSession().getAttribute("last_dir") + "&dirname=" + request.getSession().getAttribute("last_dir_name");
     }
 

@@ -18,9 +18,11 @@
 
 package org.ribbon.beans;
 
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import org.ribbon.jpa.enteties.User;
 
 /**
@@ -49,4 +51,34 @@ public class UserBean extends AbstractBean<User> {
         super(User.class);
     }
     
+    /**
+     * Find user by login.
+     * @param login user name to search;
+     * @return finded user;
+     */
+    public User findByLogin(String login) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery<User> tr = em.createNamedQuery("User.findByLogin", User.class);
+        tr.setParameter("login", login);
+        return tr.getSingleResult();
+    }
+    
+    /**
+     * Perform user entry update while login.
+     * @param logined user which just enter to the system;
+     */
+    public void performLogin(User logined) {
+        logined.setLogDate(new Date());
+        logined.setIsActive(true);
+        this.edit(logined);
+    }
+    
+    /**
+     * Perform user entity update while logout.
+     * @param logined user which will exit from the system;
+     */
+    public void performLogout(User logined) {
+        logined.setIsActive(false);
+        this.edit(logined);
+    }
 }

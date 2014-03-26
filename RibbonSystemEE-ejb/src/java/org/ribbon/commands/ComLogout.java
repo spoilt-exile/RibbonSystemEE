@@ -23,8 +23,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import javax.persistence.*;
-import org.ribbon.jpa.JPAManager;
+import javax.ejb.EJB;
+import org.ribbon.beans.UserBean;
 import org.ribbon.jpa.enteties.*;
 
 /**
@@ -32,21 +32,17 @@ import org.ribbon.jpa.enteties.*;
  * @author Stanislav Nepochatov
  */
 public class ComLogout implements Command{
+    
+    @EJB
+    private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = JPAManager.getEntityManager();
-        TypedQuery<User> qr = em.createNamedQuery("User.findByLogin", User.class);
-        qr.setParameter("login", request.getSession().getAttribute("username"));
-        User findedUser = qr.getSingleResult();
-        EntityTransaction tr = em.getTransaction();
-        tr.begin();
+        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
         if (findedUser != null) {
-            findedUser.setIsActive(false);
+            usrBean.performLogout(findedUser);
             request.getSession().removeAttribute("username");
         }
-        tr.commit();
-        em.close();
         return Router.DEFAULT_PAGE;
     }
 

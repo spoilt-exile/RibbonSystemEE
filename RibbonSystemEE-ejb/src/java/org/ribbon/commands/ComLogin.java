@@ -24,37 +24,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
 import org.ribbon.jpa.enteties.User;
+import org.ribbon.beans.UserBean;
 import org.ribbon.service.Utils;
-import java.util.Date;
-import javax.persistence.*;
+import javax.ejb.EJB;
 
 /**
  * LOGIN command class.
  * @author Stanislav Nepochatov
  */
 public class ComLogin implements Command {
+    
+    @EJB
+    private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = Persistence.createEntityManagerFactory("RibbonSystemPU").createEntityManager();
-        EntityTransaction tr = em.getTransaction();
-        tr.begin();
-        TypedQuery<User> qr = em.createNamedQuery("User.findByLogin", User.class);
-        qr.setParameter("login", request.getParameter("login"));
-        User findedUser = qr.getSingleResult();
+        User findedUser = usrBean.findByLogin(request.getParameter("login"));
         if (findedUser == null) {
             response.addHeader("login_error", "NOT_FOUND_OR_INCORRECT_PASSWD " + request.getParameter("login"));
             return Router.DEFAULT_PAGE;
         }
         if (findedUser.getPassw().equals(Utils.getHash(request.getParameter("passw")))) {
-            request.getSession().setAttribute("username", findedUser.getLogin());
-            findedUser.setIsActive(true);
-            findedUser.setLogDate(new Date());
-            tr.commit();
-            em.close();
-            return Router.MAIN_PAGE;
+            if (findedUser.getIsEnabled()) {
+                request.getSession().setAttribute("username", findedUser.getLogin());
+                if (findedUser.getIsAdmin()) {
+                    request.getSession().setAttribute("isAdmin", "true");
+                }
+                usrBean.performLogin(findedUser);
+                return Router.MAIN_PAGE;
+            } else {
+                response.addHeader("login_error", "USER_DISABLED " + request.getParameter("login"));
+                return Router.DEFAULT_PAGE;
+            }
         } else {
-            em.close();
             response.addHeader("login_error", "NOT_FOUND_OR_INCORRECT_PASSWD " + request.getParameter("login"));
             return Router.DEFAULT_PAGE;
         }

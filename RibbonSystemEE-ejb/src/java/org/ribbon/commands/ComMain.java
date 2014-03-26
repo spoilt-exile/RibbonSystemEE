@@ -24,28 +24,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import org.ribbon.jpa.JPAManager;
 import org.ribbon.jpa.enteties.User;
-import javax.persistence.*;
+import org.ribbon.beans.UserBean;
+import javax.ejb.EJB;
 
 /**
  * MAIN command class (check session and load main page, used by default by calling root of controller).
  * @author Stanislav Nepochatov
  */
 public class ComMain implements Command {
+    
+    @EJB
+    private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = JPAManager.getEntityManager();
-        TypedQuery<User> qr = em.createNamedQuery("User.findByLogin", User.class);
-        qr.setParameter("login", request.getSession().getAttribute("username"));
-        User findedUser = qr.getSingleResult();
+        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
         if (findedUser != null) {
-            EntityTransaction tr = em.getTransaction();
-            tr.begin();
-            findedUser.setIsActive(true);
-            findedUser.setLogDate(new Date());
-            tr.commit();
+            usrBean.performLogin(findedUser);
             return Router.MAIN_PAGE;
         } else {
             request.getSession().removeAttribute("username");

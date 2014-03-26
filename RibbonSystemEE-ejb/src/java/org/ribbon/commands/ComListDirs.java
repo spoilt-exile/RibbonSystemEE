@@ -19,28 +19,25 @@
 package org.ribbon.commands;
 
 import java.io.IOException;
-import java.util.List;
-import org.ribbon.jpa.JPAManager;
-import org.ribbon.jpa.enteties.Directory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.persistence.*;
+import javax.ejb.EJB;
 import org.ribbon.controller.Router;
+import org.ribbon.beans.DirectoryBean;
 
 /**
  * LIST_DIRS command class.
  * @author Stanislav Nepochatov
  */
 public class ComListDirs implements Command {
+    
+    @EJB
+    private DirectoryBean dirBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = JPAManager.getEntityManager();
-        TypedQuery qr = em.createNamedQuery("Directory.findAllSortPath", Directory.class);
-        List<Directory> dirs = qr.getResultList();
-        em.close();
-        request.setAttribute("dirs", dirs);
+        request.setAttribute("dirs", dirBean.findAllSortByPath());
         return Router.COM_LIST_DIRS;
     }
 

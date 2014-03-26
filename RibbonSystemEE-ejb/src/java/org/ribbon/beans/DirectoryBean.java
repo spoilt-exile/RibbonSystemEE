@@ -18,9 +18,11 @@
 
 package org.ribbon.beans;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import org.ribbon.jpa.enteties.Directory;
 
 /**
@@ -47,6 +49,26 @@ public class DirectoryBean extends AbstractBean<Directory> {
      */
     public DirectoryBean() {
         super(Directory.class);
+    }
+    
+    /**
+     * Get all directories sorted by path (for listing);
+     * @return list of directories;
+     */
+    public List<Directory> findAllSortByPath() {
+        return this.getEntityManager().createNamedQuery("Directory.findAllSortPath", Directory.class).getResultList();
+    }
+    
+    /**
+     * Get directory by path.
+     * @param path directory search path;
+     * @return finded directory;
+     */
+    public Directory findByPath(String path) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Directory> tr = em.createNamedQuery("Directory.findByPath", Directory.class);
+        tr.setParameter("path", path);
+        return tr.getSingleResult();
     }
     
 }

@@ -18,10 +18,13 @@
 
 package org.ribbon.beans;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import org.ribbon.jpa.enteties.Message;
+import org.ribbon.jpa.enteties.Directory;
 
 /**
  * Message entity bean.
@@ -47,6 +50,18 @@ public class MessageBean extends AbstractBean<Message> {
      */
     public MessageBean() {
         super(Message.class);
+    }
+    
+    /**
+     * Find all messages by directory id and sort by it's id;
+     * @param dirId directory id to search;
+     * @return list of messages;
+     */
+    public List<Message> findByDirIdSortId(Directory dirId) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Message> tr = em.createNamedQuery("Message.findByDirIdSortId", Message.class);
+        tr.setParameter("id", dirId);
+        return tr.getResultList();
     }
     
 }

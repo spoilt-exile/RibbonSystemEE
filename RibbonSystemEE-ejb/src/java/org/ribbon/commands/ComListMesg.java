@@ -23,27 +23,28 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import org.ribbon.jpa.enteties.Message;
-import org.ribbon.jpa.enteties.Directory;
-import org.ribbon.jpa.JPAManager;
-import javax.persistence.*;
+import org.ribbon.beans.DirectoryBean;
+import org.ribbon.beans.MessageBean;
+import javax.ejb.EJB;
 
 /**
  * LIST_MESG command class.
  * @author Stanislav Nepochatov
  */
 public class ComListMesg implements Command {
+    
+    @EJB
+    private DirectoryBean dirBean;
+    
+    @EJB
+    private MessageBean mesgBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("dirid") != null && request.getParameter("dirname") != null) {
             request.getSession().setAttribute("last_dir_name", request.getParameter("dirname"));
             request.getSession().setAttribute("last_dir", request.getParameter("dirid"));
-            EntityManager em = JPAManager.getEntityManager();
-            TypedQuery qr = em.createNamedQuery("Message.findByDirIdSortId", Message.class);
-            qr.setParameter("dirId", em.find(Directory.class, new Integer(request.getParameter("dirid"))));
-            request.setAttribute("mlist", qr.getResultList());
-            em.close();
+            request.setAttribute("mlist", mesgBean.findByDirIdSortId(dirBean.find(request.getParameter("dirid"))));
         }
         return Router.COM_LIST_MESG;
     }

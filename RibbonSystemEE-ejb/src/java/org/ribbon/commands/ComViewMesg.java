@@ -23,20 +23,28 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import org.ribbon.dao.mysql.*;
-import org.ribbon.enteties.*;
+import org.ribbon.beans.*;
+import javax.ejb.EJB;
+import org.ribbon.jpa.enteties.Message;
+import org.ribbon.jpa.enteties.User;
 
 /**
  * VIEW_MESG command class.
  * @author Stanislav Nepochatov
  */
 public class ComViewMesg implements Command{
+    
+    @EJB
+    private MessageBean mesgBean;
+    
+    @EJB
+    private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Message vMessage = MySqlDAOFactory.getNewInstance().getNewDaoMessageInstance().getMessageById(new Integer(request.getParameter("id")));
+        Message vMessage = mesgBean.find(new Integer(request.getParameter("id")));
         request.setAttribute("mesg", vMessage);
-        User author = MySqlDAOFactory.getNewInstance().getNewIDaoUserInstance().getUserById(vMessage.getAuthId());
+        User author = vMessage.getAuthId();
         request.setAttribute("auth", author);
         return Router.COM_VIEW_MESG;
     }

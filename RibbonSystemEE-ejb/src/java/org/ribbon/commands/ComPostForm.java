@@ -32,8 +32,6 @@ public class ComPostForm implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
         return Router.COM_POST_FORM;
     }
 
