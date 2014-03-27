@@ -18,10 +18,6 @@
 
 package org.ribbon.service;
 
-import java.sql.*;
-import javax.sql.*;
-import javax.naming.*;
-
 /**
  * Final class with useful methods;
  * @author Stanislav Nepochatov
@@ -49,32 +45,5 @@ public class Utils {
             }
         } catch (Exception ex) {}
         return hexString.toString();
-    }
-    
-    /**
-     * Get new connection from pool.
-     * @return connection from pool;
-     * @throws NamingException if resource not available;
-     * @throws SQLException if connection cann't be established;
-     * @deprecated use methods of JPAManager class;
-     * @see org.ribbon.jpa.JPAManager
-     */
-    public static Connection getConnection() throws NamingException, SQLException {
-        Connection newcon = null;
-        DataSource ds = (DataSource) InitialContext.doLookup("ribbonSource");
-        return ds.getConnection();
-    }
-    
-    /**
-     * Close used connection and place it to the pool.
-     * @param usedConn connection to close;
-     * @throws SQLException if something went wrong;
-     * @deprecated use methods of JPAManager class;
-     * @see org.ribbon.jpa.JPAManager
-     */
-    public static void closeConnection(Connection usedConn) throws SQLException {
-        if (usedConn != null) {
-            usedConn.close();
-        }
     }
 }
