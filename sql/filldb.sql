@@ -30,7 +30,7 @@ INSERT INTO Directory (path,description,is_hidden) VALUES ("Редакція.Е�
 #DIR_ID = 5
 INSERT INTO Directory (path,description,is_hidden) VALUES ("Редакція.Політика", "Політика", FALSE);
 #DIR_ID = 6
-INSERT INTO Directory (path,description,is_hidden) VALUES ("Редакція.РНБО", "Інформаційний спротив", FALSE);
+INSERT INTO Directory (path,description,is_hidden) VALUES ("Редакція.БРАК", "Не підлягає випуску з системи!", FALSE);
 #DIR_ID = 7
 INSERT INTO Directory (path,description,is_hidden) VALUES ("Випуск", "ВИПУСК ІНФОРМАЦІЇ", FALSE);
 #DIR_ID = 8

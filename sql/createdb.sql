@@ -39,11 +39,8 @@ UNIQUE (name)
 
 #GROUP AND USER RELATION TABLE (MANY-TO-MANY)
 CREATE TABLE UserGroupsRel (
-id		int AUTO_INCREMENT not null,
 user_id		int not null,
 group_id	int not null,
-is_enabled	boolean not null,
-PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES User(id),
 FOREIGN KEY (group_id) REFERENCES Groups(id)
 );
