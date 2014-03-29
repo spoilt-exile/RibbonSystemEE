@@ -261,6 +261,14 @@ public class Message implements Serializable {
     public void setAuthId(User authId) {
         this.authId = authId;
     }
+    
+    /**
+     * Get this message text (for JSP).
+     * @return HTML formatted text;
+     */
+    public String getText() {
+        return this.body.replaceAll("\n", "<br/>");
+    }
 
     @Override
     public int hashCode() {

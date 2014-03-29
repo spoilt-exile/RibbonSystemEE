@@ -18,11 +18,28 @@
 
 package org.ribbon.service;
 
+import javax.naming.*;
+
 /**
  * Final class with useful methods;
  * @author Stanislav Nepochatov
  */
 public class Utils {
+    
+    /**
+     * Get specified bean by global JNDI name.
+     * @param jndi global jndi name;
+     * @return finded bean or null;
+     */
+    public static Object getBean(String jndi) {
+        try {
+            Context ctx = new InitialContext();
+            return ctx.lookup(jndi);
+        } catch (NamingException e) {
+            e.printStackTrace();
+            throw new NullPointerException("STUPID FUCKING BITCH!");
+        }
+    }
     
     /**
      * Get hash sum of given string.

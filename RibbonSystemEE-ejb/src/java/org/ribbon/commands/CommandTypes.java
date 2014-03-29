@@ -19,7 +19,7 @@
 package org.ribbon.commands;
 
 /**
- * Command type enumeration and class pointer.
+ * ICommand type enumeration and class pointer.
  * @author Stanislav Nepochatov
  */
 public enum CommandTypes {
@@ -59,20 +59,31 @@ public enum CommandTypes {
      */
     POST_FORM(new ComPostForm()),
     
+    /**
+     * POST_MESG command object.
+     */
     POST_MESG(new ComPostMesg()),
     
-    VIEW_MESG(new ComViewMesg());
+    /**
+     * VIEW_MESG command object.
+     */
+    VIEW_MESG(new ComViewMesg()),
+    
+    /**
+     * USER_INFO command object.
+     */
+    USER_INFO(new ComUserInfo());
     
     /**
      * Internal command class.
      */
-    private final Command innerCommand;
+    private final ICommand innerCommand;
     
     /**
      * Enumeration constructor.
      * @param givenCommand reference of command;
      */
-    CommandTypes(Command givenCommand) {
+    CommandTypes(ICommand givenCommand) {
         innerCommand = givenCommand;
     }
     
@@ -80,7 +91,7 @@ public enum CommandTypes {
      * Get command.
      * @return command objectl;
      */
-    public Command getCommand() {
+    public ICommand getCommand() {
         return innerCommand;
     }
 }

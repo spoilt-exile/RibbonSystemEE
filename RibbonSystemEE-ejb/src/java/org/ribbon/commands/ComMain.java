@@ -27,18 +27,19 @@ import org.ribbon.controller.Router;
 import org.ribbon.jpa.enteties.User;
 import org.ribbon.beans.UserBean;
 import javax.ejb.EJB;
+import org.ribbon.service.Utils;
 
 /**
  * MAIN command class (check session and load main page, used by default by calling root of controller).
  * @author Stanislav Nepochatov
  */
-public class ComMain implements Command {
+public class ComMain implements ICommand {
     
-    @EJB
     private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
         User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
         if (findedUser != null) {
             usrBean.performLogin(findedUser);

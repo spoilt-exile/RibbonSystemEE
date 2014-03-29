@@ -26,19 +26,18 @@ import org.ribbon.controller.Router;
 import org.ribbon.jpa.enteties.User;
 import org.ribbon.beans.UserBean;
 import org.ribbon.service.Utils;
-import javax.ejb.EJB;
 
 /**
  * LOGIN command class.
  * @author Stanislav Nepochatov
  */
-public class ComLogin implements Command {
+public class ComLogin implements ICommand {
     
-    @EJB
     private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
         User findedUser = usrBean.findByLogin(request.getParameter("login"));
         if (findedUser == null) {
             response.addHeader("login_error", "NOT_FOUND_OR_INCORRECT_PASSWD " + request.getParameter("login"));

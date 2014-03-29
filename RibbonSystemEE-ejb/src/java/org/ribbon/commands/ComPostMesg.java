@@ -25,25 +25,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.jpa.enteties.*;
 import org.ribbon.beans.*;
-import javax.ejb.EJB;
+import org.ribbon.service.Utils;
 
 /**
  * POST_MESG command class.
  * @author Stanislav Nepochatov
  */
-public class ComPostMesg implements Command {
+public class ComPostMesg implements ICommand {
     
-    @EJB
     private UserBean usrBean;
     
-    @EJB
     private DirectoryBean dirBean;
     
-    @EJB
     private MessageBean mesgBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
+        dirBean = (DirectoryBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/DirectoryBean!org.ribbon.beans.DirectoryBean");
+        mesgBean = (MessageBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/MessageBean!org.ribbon.beans.MessageBean");
         Message posted = new Message();
         posted.setHeader(request.getParameter("header"));
         Directory findedDIr = dirBean.findByPath(request.getParameter("directory"));

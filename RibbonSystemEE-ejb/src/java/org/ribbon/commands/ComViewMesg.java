@@ -24,24 +24,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
 import org.ribbon.beans.*;
-import javax.ejb.EJB;
 import org.ribbon.jpa.enteties.Message;
 import org.ribbon.jpa.enteties.User;
+import org.ribbon.service.Utils;
 
 /**
  * VIEW_MESG command class.
  * @author Stanislav Nepochatov
  */
-public class ComViewMesg implements Command{
+public class ComViewMesg implements ICommand{
     
-    @EJB
     private MessageBean mesgBean;
-    
-    @EJB
-    private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        mesgBean = (MessageBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/MessageBean!org.ribbon.beans.MessageBean");
         Message vMessage = mesgBean.find(new Integer(request.getParameter("id")));
         request.setAttribute("mesg", vMessage);
         User author = vMessage.getAuthId();

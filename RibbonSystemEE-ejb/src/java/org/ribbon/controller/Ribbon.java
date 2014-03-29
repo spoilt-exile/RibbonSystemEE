@@ -19,7 +19,6 @@
 package org.ribbon.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +45,7 @@ public class Ribbon extends HttpServlet {
             throws ServletException, IOException {
         String page = null;
         try {
-            Command command = CommandHandler.getInstance().getCommand(request);            
+            ICommand command = CommandHandler.getInstance().getCommand(request);
             page = command.execute(request, response);
         } catch (ServletException e) {
             e.printStackTrace();

@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  * Simple command interface.
  * @author Stanislav Nepochatov
  */
-public interface Command {
+public interface ICommand {
     
     /**
      * Process command from controller.

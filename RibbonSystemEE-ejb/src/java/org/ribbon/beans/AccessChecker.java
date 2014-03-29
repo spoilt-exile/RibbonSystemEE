@@ -16,28 +16,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.commands;
+package org.ribbon.beans;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.ribbon.controller.Router;
+import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
 
 /**
- * POST_FORM command class.
- * @author Stanislav Nepochatov
+ * Access check bean. You should use 
+ * this bean to check user access rights 
+ * @author spoilt
  */
-public class ComPostForm implements ICommand {
+@Stateless
+@LocalBean
+public class AccessChecker {
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return Router.COM_POST_FORM;
-    }
-
-    @Override
-    public Boolean isAuthRequired() {
-        return true;
-    }
-    
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
 }

@@ -28,7 +28,7 @@ import org.ribbon.controller.Router;
  * HEADER command class.
  * @author Stanislav Nepochatov
  */
-public class ComHeader implements Command {
+public class ComHeader implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

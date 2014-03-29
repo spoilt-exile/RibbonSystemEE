@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,7 @@
                     <img src="/images/logo.png">
                 </td>
                 <td align="right" valign="bottom">
-                    <%= request.getSession().getAttribute("username") %> <a href="/Ribbon?command=LOGOUT" target="_top">ВИЙТИ</a>
+                    <a href="/Ribbon?command=USER_INFO" target="_blank">${sessionScope["username"]}</a> <a href="/Ribbon?command=LOGOUT" target="_top">ВИЙТИ</a>
                 </td>
             </tr>
         </table>

@@ -74,4 +74,9 @@ public final class Router {
      */
     public static final String COM_VIEW_MESG = GENERIC_PAGE_DIR + "viewmesg.jsp";
     
+    /**
+     * USER_INFO command page.
+     */
+    public static final String COM_USER_INFO = GENERIC_PAGE_DIR + "userinfo.jsp";
+    
 }

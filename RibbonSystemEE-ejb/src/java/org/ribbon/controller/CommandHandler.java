@@ -38,7 +38,7 @@ public class CommandHandler {
     private CommandHandler() {};
     
     /**
-     * Get instance of CommandFactory.
+     * Get instance of ICommandFactory.
      * @return sigletone instance;
      */
     public static CommandHandler getInstance() {
@@ -53,9 +53,9 @@ public class CommandHandler {
      * @param request user request;
      * @return command ready to execute;
      */
-    public Command getCommand(HttpServletRequest request) {
+    public ICommand getCommand(HttpServletRequest request) {
         try {
-            Command getComm = CommandTypes.valueOf(request.getParameter("command")).getCommand();
+            ICommand getComm = CommandTypes.valueOf(request.getParameter("command")).getCommand();
             if (getComm.isAuthRequired() == true) {
                 if (request.getSession().getAttribute("username") != null) {
                     return getComm;

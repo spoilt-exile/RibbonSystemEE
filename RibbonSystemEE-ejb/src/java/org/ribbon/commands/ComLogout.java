@@ -23,21 +23,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import javax.ejb.EJB;
 import org.ribbon.beans.UserBean;
 import org.ribbon.jpa.enteties.*;
+import org.ribbon.service.Utils;
 
 /**
  * LOGOUT command (for exit from the system).
  * @author Stanislav Nepochatov
  */
-public class ComLogout implements Command{
+public class ComLogout implements ICommand{
     
-    @EJB
     private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
         User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
         if (findedUser != null) {
             usrBean.performLogout(findedUser);

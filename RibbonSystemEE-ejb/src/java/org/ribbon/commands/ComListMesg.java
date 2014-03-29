@@ -25,26 +25,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
 import org.ribbon.beans.DirectoryBean;
 import org.ribbon.beans.MessageBean;
-import javax.ejb.EJB;
+import org.ribbon.jpa.enteties.*;
+import org.ribbon.service.Utils;
 
 /**
  * LIST_MESG command class.
  * @author Stanislav Nepochatov
  */
-public class ComListMesg implements Command {
+public class ComListMesg implements ICommand {
     
-    @EJB
     private DirectoryBean dirBean;
     
-    @EJB
     private MessageBean mesgBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        dirBean = (DirectoryBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/DirectoryBean!org.ribbon.beans.DirectoryBean");
+        mesgBean = (MessageBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/MessageBean!org.ribbon.beans.MessageBean");
         if (request.getParameter("dirid") != null && request.getParameter("dirname") != null) {
             request.getSession().setAttribute("last_dir_name", request.getParameter("dirname"));
             request.getSession().setAttribute("last_dir", request.getParameter("dirid"));
-            request.setAttribute("mlist", mesgBean.findByDirIdSortId(dirBean.find(request.getParameter("dirid"))));
+            Directory dirId = dirBean.find(new Integer(request.getParameter("dirid")));
+            request.setAttribute("mlist", mesgBean.findByDirIdSortId(dirId));
         }
         return Router.COM_LIST_MESG;
     }

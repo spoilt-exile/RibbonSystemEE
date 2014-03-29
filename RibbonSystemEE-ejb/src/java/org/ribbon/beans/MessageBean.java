@@ -60,7 +60,7 @@ public class MessageBean extends AbstractBean<Message> {
     public List<Message> findByDirIdSortId(Directory dirId) {
         EntityManager em = this.getEntityManager();
         TypedQuery<Message> tr = em.createNamedQuery("Message.findByDirIdSortId", Message.class);
-        tr.setParameter("id", dirId);
+        tr.setParameter("dirId", dirId);
         return tr.getResultList();
     }
     
