@@ -16,7 +16,7 @@ JAVA EE.
 
 ЗАЛЕЖНОСТІ
 GlassFish =>4.0
-Hibernate =>4.3
+EclipseLink => 2.5.0
 
 АВТОРСЬКІ ПРАВА ТА УМОВИ РОЗПОВСЮДЖЕННЯ
 
