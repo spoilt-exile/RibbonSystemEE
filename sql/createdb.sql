@@ -1,5 +1,5 @@
 # Create RibbonSystem database structure;
-# Data base structure version = 2.1;
+# Data base structure version = 2.2;
 
 #RIBBON USER CREATE
 CREATE USER 'ribbon'@'localhost' IDENTIFIED BY '9ARb@Pas$';

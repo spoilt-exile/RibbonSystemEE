@@ -1,5 +1,5 @@
 # Filling up RibbonSystem database structure;
-# Data base structure version = 2.1;
+# Data base structure version = 2.2;
 
 #CHANGE DB;
 USE ribbon;
@@ -16,7 +16,7 @@ INSERT INTO Groups (name,description) VALUES("test", "Test group");
 
 #RELATION CREATION
 #LINK test USER TO test GROUP AND ENABLE IT
-INSERT INTO UserGroupsRel (user_id,group_id,is_enabled) VALUES (2, 1, TRUE);
+INSERT INTO UserGroupsRel (user_id,group_id) VALUES (2, 1);
 
 #CREATER DIRECTORIS
 #DIR_ID = 1
