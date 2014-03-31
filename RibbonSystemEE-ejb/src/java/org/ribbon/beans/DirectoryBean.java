@@ -83,8 +83,12 @@ public class DirectoryBean extends AbstractBean<Directory> {
         if (chunks.length == 1) {
             rList.add(this.findByPath(path));
         } else {
-            for (int index = 0; index < chunks.length - 1; index++) {
-                rList.add(this.findByPath(chunks[index] + "." + chunks[index + 1]));
+            String currPath = chunks[0];
+            for (int index = 0; index < chunks.length; index++) {
+                rList.add(this.findByPath(currPath));
+                if (index < chunks.length - 1) {
+                    currPath += "." + chunks[index + 1];
+                }
             }
         }
         return rList;

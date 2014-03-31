@@ -37,7 +37,7 @@ public class Utils {
             return ctx.lookup(jndi);
         } catch (NamingException e) {
             e.printStackTrace();
-            throw new NullPointerException("STUPID FUCKING BITCH!");
+            return null;
         }
     }
     

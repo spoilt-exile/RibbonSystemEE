@@ -19,8 +19,8 @@
 package org.ribbon.beans;
 
 import java.util.List;
+import java.util.ListIterator;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
 import org.ribbon.jpa.enteties.*;
 
 /**
@@ -29,7 +29,6 @@ import org.ribbon.jpa.enteties.*;
  * @author Stanislav Nepochatov
  */
 @Stateless
-@LocalBean
 public class AccessChecker {
     
     /**
@@ -45,8 +44,10 @@ public class AccessChecker {
         }
         List<Directory> chain = dirBean.findChain(target);
         List<Permission> perms = null;
-        for (int dirIndex = chain.size() - 1; dirIndex > 0; dirIndex--) {
-            List<Permission> tempPerms = chain.get(dirIndex).getPermissionList();
+        ListIterator<Directory> chainIter = chain.listIterator(chain.size());
+        while (chainIter.hasPrevious()) {
+            Directory chainElement = chainIter.previous();
+            List<Permission> tempPerms = chainElement.getPermissionList();
             if (tempPerms.size() > 0) {
                 perms = tempPerms;
                 break;
@@ -59,7 +60,7 @@ public class AccessChecker {
                     resolved = Permission.compare(resolved, Permission.getState(checked));
                 } else {
                     for (Groups grp: initiator.getGroupsList()) {
-                        if (grp.equals(checked.getGroupId())) {
+                        if (grp.equals(checked.getGroupId()) || checked.getAllPerm()) {
                             resolved = Permission.compare(resolved, Permission.getState(checked));
                         }
                     }

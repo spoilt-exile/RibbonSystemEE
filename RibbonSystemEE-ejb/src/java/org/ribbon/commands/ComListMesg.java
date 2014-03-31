@@ -23,8 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import org.ribbon.beans.DirectoryBean;
-import org.ribbon.beans.MessageBean;
+import org.ribbon.beans.*;
 import org.ribbon.jpa.enteties.*;
 import org.ribbon.service.Utils;
 
@@ -34,19 +33,29 @@ import org.ribbon.service.Utils;
  */
 public class ComListMesg implements ICommand {
     
+    private UserBean usrBean;
+    
     private DirectoryBean dirBean;
     
     private MessageBean mesgBean;
+    
+    private AccessChecker accBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        accBean = (AccessChecker) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/AccessChecker!org.ribbon.beans.AccessChecker");
+        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
         dirBean = (DirectoryBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/DirectoryBean!org.ribbon.beans.DirectoryBean");
         mesgBean = (MessageBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/MessageBean!org.ribbon.beans.MessageBean");
         if (request.getParameter("dirid") != null && request.getParameter("dirname") != null) {
-            request.getSession().setAttribute("last_dir_name", request.getParameter("dirname"));
-            request.getSession().setAttribute("last_dir", request.getParameter("dirid"));
-            Directory dirId = dirBean.find(new Integer(request.getParameter("dirid")));
-            request.setAttribute("mlist", mesgBean.findByDirIdSortId(dirId));
+            Permission.ACCESS_STATE resolved = accBean.check(usrBean.findByLogin(request.getSession().getAttribute("username").toString()), dirBean, request.getParameter("dirname"));
+            if (resolved.ordinal() >= Permission.ACCESS_STATE.MAY_READ.ordinal()) {
+                request.getSession().setAttribute("last_dir_name", request.getParameter("dirname"));
+                request.getSession().setAttribute("last_dir", request.getParameter("dirid"));
+                Directory dirId = dirBean.find(new Integer(request.getParameter("dirid")));
+                request.setAttribute("mlist", mesgBean.findByDirIdSortId(dirId));
+            }
+            request.setAttribute("acc_mode", resolved.ordinal());
         }
         return Router.COM_LIST_MESG;
     }
