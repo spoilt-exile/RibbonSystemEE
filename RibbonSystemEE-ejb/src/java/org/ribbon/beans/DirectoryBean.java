@@ -19,6 +19,7 @@
 package org.ribbon.beans;
 
 import java.util.List;
+import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -69,6 +70,24 @@ public class DirectoryBean extends AbstractBean<Directory> {
         TypedQuery<Directory> tr = em.createNamedQuery("Directory.findByPath", Directory.class);
         tr.setParameter("path", path);
         return tr.getSingleResult();
+    }
+    
+    /**
+     * Get list with directory chain to last element.
+     * @param path directory path to search;
+     * @return list with all chain elements of search;
+     */
+    public List<Directory> findChain(String path) {
+        String[] chunks = path.split("\\.");
+        List<Directory> rList = new ArrayList<Directory>(chunks.length);
+        if (chunks.length == 1) {
+            rList.add(this.findByPath(path));
+        } else {
+            for (int index = 0; index < chunks.length - 1; index++) {
+                rList.add(this.findByPath(chunks[index] + "." + chunks[index + 1]));
+            }
+        }
+        return rList;
     }
     
 }

@@ -18,18 +18,57 @@
 
 package org.ribbon.beans;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import org.ribbon.jpa.enteties.*;
 
 /**
  * Access check bean. You should use 
  * this bean to check user access rights 
- * @author spoilt
+ * @author Stanislav Nepochatov
  */
 @Stateless
 @LocalBean
 public class AccessChecker {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    /**
+     * Check access for specified user for directory.
+     * @param initiator user entity of initiator of check;
+     * @param dirBean directory entity bean for tree permission check;
+     * @param target name of target directory;
+     * @return state of access checking;
+     */
+    public Permission.ACCESS_STATE check(User initiator, DirectoryBean dirBean, String target) {
+        if (initiator.getLogin().equals("root")) {
+            return Permission.ACCESS_STATE.MAY_ADMIN;
+        }
+        List<Directory> chain = dirBean.findChain(target);
+        List<Permission> perms = null;
+        for (int dirIndex = chain.size() - 1; dirIndex > 0; dirIndex--) {
+            List<Permission> tempPerms = chain.get(dirIndex).getPermissionList();
+            if (tempPerms.size() > 0) {
+                perms = tempPerms;
+                break;
+            }
+        }
+        if (perms != null) {
+            Permission.ACCESS_STATE resolved = Permission.ACCESS_STATE.NO_ACCESS;
+            for (Permission checked: perms) {
+                if (!checked.getGroupPerm() && initiator.equals(checked.getUserId())) {
+                    resolved = Permission.compare(resolved, Permission.getState(checked));
+                } else {
+                    for (Groups grp: initiator.getGroupsList()) {
+                        if (grp.equals(checked.getGroupId())) {
+                            resolved = Permission.compare(resolved, Permission.getState(checked));
+                        }
+                    }
+                }
+            }
+            return resolved;
+        } else {
+            return Permission.ACCESS_STATE.MAY_READ;
+        }
+    }
+    
 }

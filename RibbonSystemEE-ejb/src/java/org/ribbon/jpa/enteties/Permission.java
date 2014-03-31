@@ -129,6 +129,32 @@ public class Permission implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
+    
+    /**
+     * Access state for internal access check mechanism.
+     */
+    public static enum ACCESS_STATE {
+        
+        /**
+         * Initiator has no access for directory or message.
+         */
+        NO_ACCESS,
+        
+        /**
+         * Initator may read all messages in directory (using by default).
+         */
+        MAY_READ,
+        
+        /**
+         * Initiator may read, post new messages, edit his own messages and delete them.
+         */
+        MAY_POST,
+        
+        /**
+         * Initiator may read, post, edit and delete all messages in directory.
+         */
+        MAY_ADMIN
+    }
 
     /**
      * Default constructor.
@@ -333,4 +359,36 @@ public class Permission implements Serializable {
         return "org.ribbon.jpa.enteties.Permission[ id=" + id + " ]";
     }
     
+    /**
+     * Compare two different access states.
+     * @param state1 first state;
+     * @param state2 second state;
+     * @return state which gives more priviligies to user;
+     */
+    public static ACCESS_STATE compare(ACCESS_STATE state1, ACCESS_STATE state2) {
+        if (state1.ordinal() > state2.ordinal()) {
+            return state1;
+        } else {
+            return state2;
+        }
+    }
+    
+    /**
+     * Get access state result by internal permission state;
+     * @param perm permission entity to check;
+     * @return access state of this permission;
+     */
+    public static ACCESS_STATE getState(Permission perm) {
+        ACCESS_STATE resolved = ACCESS_STATE.NO_ACCESS;
+        if (perm.getMayRead()) {
+            resolved = ACCESS_STATE.MAY_READ;
+        }
+        if (perm.getMayPost()) {
+            resolved = ACCESS_STATE.MAY_POST;
+        }
+        if (perm.getMayAdmin()) {
+            resolved = ACCESS_STATE.MAY_ADMIN;
+        }
+        return resolved;
+    }
 }
