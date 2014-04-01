@@ -18,12 +18,14 @@
 
 package org.ribbon.commands;
 
+import org.ribbon.enteties.Message;
+import org.ribbon.enteties.User;
+import org.ribbon.enteties.Directory;
 import java.io.IOException;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.ribbon.jpa.enteties.*;
 import org.ribbon.beans.*;
 import org.ribbon.service.Utils;
 

@@ -24,8 +24,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
 import org.ribbon.beans.*;
-import org.ribbon.jpa.enteties.Message;
-import org.ribbon.jpa.enteties.User;
+import org.ribbon.commands.ICommand;
+import org.ribbon.enteties.Message;
+import org.ribbon.enteties.User;
 import org.ribbon.service.Utils;
 
 /**

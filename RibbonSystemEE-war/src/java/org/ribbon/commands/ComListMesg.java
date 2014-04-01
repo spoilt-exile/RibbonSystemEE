@@ -18,13 +18,14 @@
 
 package org.ribbon.commands;
 
+import org.ribbon.enteties.Permission;
+import org.ribbon.enteties.Directory;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.ribbon.controller.Router;
 import org.ribbon.beans.*;
-import org.ribbon.jpa.enteties.*;
+import org.ribbon.controller.Router;
 import org.ribbon.service.Utils;
 
 /**

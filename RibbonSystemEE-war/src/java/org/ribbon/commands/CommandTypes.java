@@ -18,6 +18,11 @@
 
 package org.ribbon.commands;
 
+import org.ribbon.commands.ComLogin;
+import org.ribbon.commands.ComLogout;
+import org.ribbon.commands.ComPostMesg;
+import org.ribbon.commands.ICommand;
+
 /**
  * ICommand type enumeration and class pointer.
  * @author Stanislav Nepochatov

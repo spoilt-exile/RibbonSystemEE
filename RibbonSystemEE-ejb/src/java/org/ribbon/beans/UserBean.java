@@ -23,7 +23,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import org.ribbon.jpa.enteties.User;
+import org.ribbon.enteties.User;
 
 /**
  * Message entity bean.

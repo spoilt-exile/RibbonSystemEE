@@ -22,17 +22,18 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.ribbon.commands.ICommand;
 import org.ribbon.controller.Router;
 
 /**
- * POST_FORM command class.
+ * HEADER command class.
  * @author Stanislav Nepochatov
  */
-public class ComPostForm implements ICommand {
+public class ComHeader implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return Router.COM_POST_FORM;
+        return Router.COM_HEADER;
     }
 
     @Override

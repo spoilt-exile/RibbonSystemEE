@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Stanislav Nepochatov
+ * Copyright (C) 2014 spoilt
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,17 +22,25 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.ribbon.beans.UserBean;
+import javax.ejb.EJB;
+import org.ribbon.commands.ICommand;
 import org.ribbon.controller.Router;
+import org.ribbon.service.Utils;
 
 /**
- * HEADER command class.
- * @author Stanislav Nepochatov
+ * USER_INFO command class;
+ * @author spoilt
  */
-public class ComHeader implements ICommand {
+public class ComUserInfo implements ICommand {
+    
+    private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return Router.COM_HEADER;
+        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
+        request.setAttribute("groupList", usrBean.findByLogin(request.getSession().getAttribute("username").toString()).getGroupsList());
+        return Router.COM_USER_INFO;
     }
 
     @Override

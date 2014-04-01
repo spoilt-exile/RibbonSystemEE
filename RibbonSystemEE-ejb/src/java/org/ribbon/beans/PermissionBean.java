@@ -21,7 +21,7 @@ package org.ribbon.beans;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.ribbon.jpa.enteties.Permission;
+import org.ribbon.enteties.Permission;
 
 /**
  * Permission entity bean.

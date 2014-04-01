@@ -21,7 +21,7 @@ package org.ribbon.beans;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.ribbon.jpa.enteties.Groups;
+import org.ribbon.enteties.Groups;
 
 /**
  * Grpups entity bean.

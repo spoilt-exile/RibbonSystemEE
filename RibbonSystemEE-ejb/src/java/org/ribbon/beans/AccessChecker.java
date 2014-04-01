@@ -18,10 +18,13 @@
 
 package org.ribbon.beans;
 
+import org.ribbon.enteties.Permission;
+import org.ribbon.enteties.Groups;
+import org.ribbon.enteties.Directory;
+import org.ribbon.enteties.User;
 import java.util.List;
 import java.util.ListIterator;
 import javax.ejb.Stateless;
-import org.ribbon.jpa.enteties.*;
 
 /**
  * Access check bean. You should use 

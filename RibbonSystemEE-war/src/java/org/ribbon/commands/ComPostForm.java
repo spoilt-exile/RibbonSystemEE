@@ -22,23 +22,18 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.ribbon.commands.ICommand;
 import org.ribbon.controller.Router;
-import org.ribbon.beans.DirectoryBean;
-import org.ribbon.service.Utils;
 
 /**
- * LIST_DIRS command class.
+ * POST_FORM command class.
  * @author Stanislav Nepochatov
  */
-public class ComListDirs implements ICommand {
-    
-    private DirectoryBean dirBean;
+public class ComPostForm implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        dirBean = (DirectoryBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/DirectoryBean!org.ribbon.beans.DirectoryBean");
-        request.setAttribute("dirs", dirBean.findAllSortByPath());
-        return Router.COM_LIST_DIRS;
+        return Router.COM_POST_FORM;
     }
 
     @Override

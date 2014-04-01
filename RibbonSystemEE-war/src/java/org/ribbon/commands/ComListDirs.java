@@ -23,29 +23,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import org.ribbon.jpa.enteties.User;
-import org.ribbon.beans.UserBean;
+import org.ribbon.beans.DirectoryBean;
+import org.ribbon.commands.ICommand;
 import org.ribbon.service.Utils;
 
 /**
- * MAIN command class (check session and load main page, used by default by calling root of controller).
+ * LIST_DIRS command class.
  * @author Stanislav Nepochatov
  */
-public class ComMain implements ICommand {
+public class ComListDirs implements ICommand {
     
-    private UserBean usrBean;
+    private DirectoryBean dirBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
-        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
-        if (findedUser != null) {
-            usrBean.performLogin(findedUser);
-            return Router.MAIN_PAGE;
-        } else {
-            request.getSession().removeAttribute("username");
-            return Router.DEFAULT_PAGE;
-        }
+        dirBean = (DirectoryBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/DirectoryBean!org.ribbon.beans.DirectoryBean");
+        request.setAttribute("dirs", dirBean.findAllSortByPath());
+        return Router.COM_LIST_DIRS;
     }
 
     @Override

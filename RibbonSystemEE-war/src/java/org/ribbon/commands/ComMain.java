@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,24 +22,31 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.ribbon.beans.UserBean;
-import javax.ejb.EJB;
 import org.ribbon.controller.Router;
+import org.ribbon.enteties.User;
+import org.ribbon.beans.UserBean;
+import org.ribbon.commands.ICommand;
 import org.ribbon.service.Utils;
 
 /**
- * USER_INFO command class;
- * @author spoilt
+ * MAIN command class (check session and load main page, used by default by calling root of controller).
+ * @author Stanislav Nepochatov
  */
-public class ComUserInfo implements ICommand {
+public class ComMain implements ICommand {
     
     private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
-        request.setAttribute("groupList", usrBean.findByLogin(request.getSession().getAttribute("username").toString()).getGroupsList());
-        return Router.COM_USER_INFO;
+        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
+        if (findedUser != null) {
+            usrBean.performLogin(findedUser);
+            return Router.MAIN_PAGE;
+        } else {
+            request.getSession().removeAttribute("username");
+            return Router.DEFAULT_PAGE;
+        }
     }
 
     @Override

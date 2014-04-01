@@ -24,7 +24,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import org.ribbon.jpa.enteties.Directory;
+import org.ribbon.enteties.Directory;
 
 /**
  * Directory entity bean.

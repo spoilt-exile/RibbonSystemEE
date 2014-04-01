@@ -23,7 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
-import org.ribbon.jpa.enteties.User;
+import org.ribbon.enteties.User;
 import org.ribbon.beans.UserBean;
 import org.ribbon.service.Utils;
 
