@@ -50,7 +50,7 @@ public class ComLogin implements ICommand {
                     request.getSession().setAttribute("isAdmin", "true");
                 }
                 usrBean.performLogin(findedUser);
-                return Router.MAIN_PAGE;
+                return "/redirect.jsp";
             } else {
                 response.addHeader("login_error", "USER_DISABLED " + request.getParameter("login"));
                 return Router.DEFAULT_PAGE;

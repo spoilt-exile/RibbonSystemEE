@@ -19,14 +19,12 @@
 package org.ribbon.commands;
 
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.controller.Router;
 import org.ribbon.jpa.enteties.User;
 import org.ribbon.beans.UserBean;
-import javax.ejb.EJB;
 import org.ribbon.service.Utils;
 
 /**
@@ -52,7 +50,7 @@ public class ComMain implements ICommand {
 
     @Override
     public Boolean isAuthRequired() {
-        return false;
+        return true;
     }
     
 }

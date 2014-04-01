@@ -37,8 +37,8 @@ public final class Router {
     /**
      * Default route (should be used if login failed).
      */
-    public static final String DEFAULT_PAGE = "/login.jsp";
-    
+    public static final String DEFAULT_PAGE = "/login.jsp"; 
+   
     /**
      * Main user UI route (use this to redirect logined users).
      */

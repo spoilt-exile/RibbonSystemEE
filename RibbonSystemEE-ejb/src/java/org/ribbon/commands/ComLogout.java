@@ -43,7 +43,7 @@ public class ComLogout implements ICommand{
             usrBean.performLogout(findedUser);
             request.getSession().removeAttribute("username");
         }
-        return Router.DEFAULT_PAGE;
+        return "/redirect.jsp";
     }
 
     @Override
