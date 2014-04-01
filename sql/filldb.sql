@@ -1,5 +1,5 @@
 # Filling up RibbonSystem database structure;
-# Data base structure version = 2.2;
+# Data base structure version = 3.0;
 
 #CHANGE DB;
 USE ribbon;
@@ -45,4 +45,7 @@ INSERT INTO Directory (path,description,is_hidden) VALUES ("Випуск.ЄПС.
 INSERT INTO Permission (dir_id,group_perm,all_perm,may_read,may_post,may_admin) VALUES (1,TRUE,TRUE,TRUE,TRUE,FALSE);
 
 #POST ONE MESSAGE
-INSERT INTO Message (header,dir_id,post_date,auth_id,is_urgent,body) VALUES ("Тестове повідомлення", 2, NOW(), 1, FALSE, "Це тестове повідомлення системи обробки новиних повідомленнь.");
+INSERT INTO Message (header,post_date,auth_id,is_urgent,body) VALUES ("Тестове повідомлення", NOW(), 1, FALSE, "Це тестове повідомлення системи обробки новиних повідомленнь.");
+
+#LINK MESSAGE TO DIRECTORY
+INSERT INTO DirMesgRel (dir_id,mesg_id) VALUES (2,1);

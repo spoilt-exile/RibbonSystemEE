@@ -9,6 +9,7 @@
     <class>org.ribbon.enteties.User</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
+        <property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
     </properties>
   </persistence-unit>
 </persistence>

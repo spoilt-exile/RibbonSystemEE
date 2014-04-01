@@ -28,7 +28,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -92,7 +95,10 @@ public class Directory implements Serializable {
      * LINK TO: <code>Message</code> table;
      * @see org.ribbon.jpa.enteties.Message
      */
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "dirId")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "DirMesgRel", 
+      joinColumns={@JoinColumn(name="dir_id", referencedColumnName="id")},
+      inverseJoinColumns={@JoinColumn(name="mesg_id", referencedColumnName="id")})
     private List<Message> messageList;
     
     /**

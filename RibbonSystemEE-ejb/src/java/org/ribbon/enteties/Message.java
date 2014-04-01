@@ -20,6 +20,7 @@ package org.ribbon.enteties;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -101,12 +104,13 @@ public class Message implements Serializable {
     private String body;
     
     /**
-     * Directory object which contains this message.<br/>
-     * LINK TO: <code>Directory</code> table;
+     * Directory object which contains this message.
      */
-    @JoinColumn(name = "dir_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Directory dirId;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "DirMesgRel", 
+      joinColumns={@JoinColumn(name="mesg_id", referencedColumnName="id")},
+      inverseJoinColumns={@JoinColumn(name="dir_id", referencedColumnName="id")})
+    private List<Directory> dirId;
     
     /**
      * Entity of author which post this message..<br/>
@@ -140,14 +144,13 @@ public class Message implements Serializable {
      * @param author author entety reference;
      * @param directory directory entity reference;
      */
-    public Message(Integer id, String header, Date postDate, boolean isUrgent, String body, User author, Directory directory) {
+    public Message(Integer id, String header, Date postDate, boolean isUrgent, String body, User author) {
         this.id = id;
         this.header = header;
         this.postDate = postDate;
         this.isUrgent = isUrgent;
         this.body = body;
         this.authId = author;
-        this.dirId = directory;
     }
 
     /**
@@ -231,22 +234,6 @@ public class Message implements Serializable {
     }
 
     /**
-     * Get referenced directory.
-     * @return the directory;
-     */
-    public Directory getDirId() {
-        return dirId;
-    }
-
-    /**
-     * Set referenced directory (equal to move message).
-     * @param dirId the new dir to set;
-     */
-    public void setDirId(Directory dirId) {
-        this.dirId = dirId;
-    }
-
-    /**
      * Get author.
      * @return the author User object;
      */
@@ -293,5 +280,21 @@ public class Message implements Serializable {
     @Override
     public String toString() {
         return "org.ribbon.jpa.enteties.Message[ id=" + id + " ]";
+    }
+
+    /**
+     * Get list of directories linked with this message.
+     * @return the list with directories;
+     */
+    public List<Directory> getDirId() {
+        return dirId;
+    }
+
+    /**
+     * Set list of directories to link them with message.
+     * @param dirId directory list to set;
+     */
+    public void setDirId(List<Directory> dirId) {
+        this.dirId = dirId;
     }
 }
