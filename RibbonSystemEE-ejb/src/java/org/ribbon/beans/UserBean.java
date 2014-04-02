@@ -21,6 +21,7 @@ package org.ribbon.beans;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.ribbon.enteties.User;
@@ -60,7 +61,11 @@ public class UserBean extends AbstractBean<User> {
         EntityManager em = this.getEntityManager();
         TypedQuery<User> tr = em.createNamedQuery("User.findByLogin", User.class);
         tr.setParameter("login", login);
-        return tr.getSingleResult();
+        try {
+            return tr.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
     
     /**
