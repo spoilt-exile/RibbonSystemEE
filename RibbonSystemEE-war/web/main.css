@@ -1,0 +1,28 @@
+/** Body style override **/
+body {
+  background-color: #f2f2f2;
+	font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
+}
+
+/** Link style override **/
+a {
+  color: #24589d;
+}
+
+/** Error class: header **/
+.ribbon_error_header {
+	color: #b30000;
+ 	font-weight: bold;
+  font-size: 12pt;
+  font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
+}
+
+/** Login frame **/
+.login-frame {
+	width: 250px;
+  color: #ffffff;
+  border: 1px solid #e51e1e;
+  border-radius: 9px;
+  padding: 5px 5px 5px;
+  background-color: #2d69aa;
+}

@@ -10,18 +10,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ВХІД ДО СИСТЕМИ</title>
+        <link REL="stylesheet" type="text/css" href="/main.css">
     </head>
     <body>
-        <% if (response.getHeader("login_error") != null) { %>
-            <font color="red"><%= response.getHeader("login_error") %></font><br/>
-        <% } %>
+        <br/><br/><br/><br/>
         <div align="center">
-        <form action="/Ribbon" method="POST" name="user-add"> <br/>
+        <div class="login-frame">
+            <img src="/images/logo.png" />
+        <form action="/Ribbon" method="POST" name="user-add">
             <input type="hidden" name="command" value="LOGIN">
-            <b>ЛОГІН:</b> <input type="text" name="login" maxlength="125"> <br/>
-            <b>ПАРОЛЬ:</b> <input type="password" name="passw"> <br/>
-            <input type="submit" value="Увійти до системи">
+            <b>ЛОГІН:</b><br/>
+            <input type="text" name="login" maxlength="125" required> <br/>
+            <b>ПАРОЛЬ:</b><br/>
+            <input type="password" name="passw" required> <br/>
+            <input type="submit" value="Увійти"> 
+            <input type="reset" value="Скасувати">
         </form>
+        </div>
+        <% if (response.getHeader("login_error") != null) { %>
+            <span class="ribbon_error_header"><%= response.getHeader("login_error") %></span><br/>
+        <% } %>
         </div>
     </body>
 </html>

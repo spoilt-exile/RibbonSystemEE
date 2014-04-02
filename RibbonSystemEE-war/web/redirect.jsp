@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Перенаправлення</title>
+        <link REL="stylesheet" type="text/css" href="/main.css">
         <script type="text/javascript">
             setTimeout(function(){window.location.href = "/index.jsp"}, 3000);
         </script>

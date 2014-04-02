@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>НАПРЯМКИ СИСТЕМИ</title>
+        <link REL="stylesheet" type="text/css" href="/main.css">
     </head>
     <body>
         <a href="/Ribbon?command=POST_FORM" target="MSG">НОВЕ ПОВІДОМЛЕННЯ</a>

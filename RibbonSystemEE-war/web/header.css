@@ -1,0 +1,11 @@
+/** Body style override **/
+body {
+  color: #ffffff;
+  background-color: #2d69aa;
+	font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
+}
+
+/** Link style override **/
+a {
+  color: #ffffff;
+}

@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Заголовок</title>
+        <link REL="stylesheet" type="text/css" href="/header.css">
     </head>
     <body>
         <table width="100%">
