@@ -26,3 +26,13 @@ a {
   padding: 5px 5px 5px;
   background-color: #2d69aa;
 }
+
+/** User info frame **/
+.info-frame {
+	width: 600px;
+  color: #ffffff;
+  border: 1px solid #e51e1e;
+  border-radius: 9px;
+  padding: 5px 5px 5px;
+  background-color: #2d69aa;
+}

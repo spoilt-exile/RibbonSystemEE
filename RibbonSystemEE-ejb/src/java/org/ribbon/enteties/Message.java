@@ -40,6 +40,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.ribbon.service.Utils;
 
 /**
  * Message JPA entity class;
@@ -191,6 +192,14 @@ public class Message implements Serializable {
      */
     public Date getPostDate() {
         return postDate;
+    }
+    
+    /**
+     * Get date of message posting (FORMATED).
+     * @return the formatted string;
+     */
+    public String getFormatPostDate() {
+        return Utils.formatDate(postDate);
     }
 
     /**

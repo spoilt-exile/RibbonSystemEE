@@ -65,7 +65,7 @@
                             <c:set var="author" value="${message.authId}">
                             </c:set>
                             <td>${author.login}</td>
-                            <td>${message.postDate}</td>
+                            <td>${message.formatPostDate}</td>
                             <td>
                                 [Перевипустити]
                                 <c:choose>

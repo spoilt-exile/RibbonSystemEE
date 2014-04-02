@@ -18,6 +18,9 @@
 
 package org.ribbon.service;
 
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.naming.*;
 
 /**
@@ -25,6 +28,18 @@ import javax.naming.*;
  * @author Stanislav Nepochatov
  */
 public class Utils {
+    
+    public static String formatDate(Date toFormat) {
+        DateFormatSymbols mySymbols = new DateFormatSymbols() {
+            @Override
+            public String[] getMonths() {
+                return new String[]{"січня", "лютого", "березня", "квітня", "травня", "червеня",
+                    "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"};
+            }
+        };
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM HH:mm:ss", mySymbols);
+        return sdf.format(toFormat);
+    }
     
     /**
      * Get specified bean by global JNDI name.

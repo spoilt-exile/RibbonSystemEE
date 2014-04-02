@@ -45,11 +45,6 @@ public final class Router {
     public static final String MAIN_PAGE = GENERIC_PAGE_DIR + "main.jsp";
     
     /**
-     * Generic error page route.
-     */
-    public static final String ERROR_PAGE = GENERIC_PAGE_DIR + "error.jsp";
-    
-    /**
      * LIST_DIR command page.
      */
     public static final String COM_LIST_DIRS = GENERIC_PAGE_DIR + "listdirs.jsp";

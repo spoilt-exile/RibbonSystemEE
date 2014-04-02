@@ -20,7 +20,9 @@
                     <img src="/images/logo.png">
                 </td>
                 <td align="right" valign="bottom">
-                    <a href="/Ribbon?command=USER_INFO" target="_blank">${sessionScope["username"]}</a> <a href="/Ribbon?command=LOGOUT" target="_top">ВИЙТИ</a>
+                    ${sessionScope["username"]} 
+                    [<a href="#" onClick="window.open('/Ribbon?command=USER_INFO', '_blank', 'Toolbar=0, Scrollbars=1, Resizable=0, Width=640, resize=no, Height=480');">ІНФО</a>] 
+                    [<a href="/Ribbon?command=LOGOUT" target="_top">ВИЙТИ</a>]
                 </td>
             </tr>
         </table>

@@ -23,8 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.beans.UserBean;
-import javax.ejb.EJB;
-import org.ribbon.commands.ICommand;
+import org.ribbon.enteties.User;
 import org.ribbon.controller.Router;
 import org.ribbon.service.Utils;
 
@@ -39,7 +38,9 @@ public class ComUserInfo implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
-        request.setAttribute("groupList", usrBean.findByLogin(request.getSession().getAttribute("username").toString()).getGroupsList());
+        User finded = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
+        request.setAttribute("user", finded);
+        request.setAttribute("groupList", finded.getGroupsList());
         return Router.COM_USER_INFO;
     }
 

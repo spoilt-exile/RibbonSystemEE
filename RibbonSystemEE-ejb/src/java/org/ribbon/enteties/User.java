@@ -40,6 +40,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.ribbon.service.Utils;
 
 /**
  * User JPA entity class;
@@ -260,6 +261,14 @@ public class User implements Serializable {
     public Date getCrtDate() {
         return crtDate;
     }
+    
+    /**
+     * Get date of user creation (FORMATED).
+     * @return the formatted string;
+     */
+    public String getFormatCrtDate() {
+        return Utils.formatDate(crtDate);
+    }
 
     /**
      * Set date of user creation.
@@ -275,6 +284,14 @@ public class User implements Serializable {
      */
     public Date getLogDate() {
         return logDate;
+    }
+    
+    /**
+     * Get date of user last login (FORMATED).
+     * @return the formatted string;
+     */
+    public String getFormatLogDate() {
+        return Utils.formatDate(logDate);
     }
 
     /**

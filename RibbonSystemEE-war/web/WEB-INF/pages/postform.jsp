@@ -19,12 +19,14 @@
         <br/>
         <form action="/Ribbon?command=POST_MESG" method="POST">
             <input type="hidden" name="directory" value="${sessionScope["last_dir_name"]}">
-            ЗАГОЛОВОК: <input type="text" name="header" size="75"><br/>
+            ЗАГОЛОВОК:<br/>
+            <input type="text" name="header" size="75" required><br/>
             ТЕРМІНОВО: <input type="checkbox" name="urgent" value="urgent"><br/>
             ТЕКСТ ПОВІДОМЛЕННЯ:<br/>
-            <textarea name="body" cols="100" rows="15" maxlength="1000000"></textarea>
+            <textarea name="body" cols="100" rows="15" maxlength="1000000" required></textarea>
             <br/>
-            <input type="submit" value="ДОДАТИ ПОВІДОМЛЕННЯ">
+            <input type="submit" value="Випустити">
+            <input type="reset" value="Зтерти">
         </form>
     </body>
 </html>

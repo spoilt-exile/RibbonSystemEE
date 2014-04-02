@@ -14,9 +14,20 @@
         <link REL="stylesheet" type="text/css" href="/main.css">
     </head>
     <body>
-        <h1>Групи:</h1><br/>
-        <c:forEach var="group" items="${groupList}">
-            <b>${group.name} <i>(${group.description})</i></b><br/>
-        </c:forEach>
+        <div class="info-frame">
+            <b>Ім’я користувача:</b> ${user.login} <br/>
+            <b>Опис користувача:</b> ${user.description} <br/>
+            <b>Дата створення:</b> ${user.formatCrtDate} <br/>
+            <b>Дата логіну</b> ${user.formatLogDate} <br/>
+            <br/>
+            <b>Групи:</b><br/>
+            <c:forEach var="group" items="${groupList}">
+                <b>${group.name} <i>(${group.description})</i></b><br/>
+            </c:forEach>
+        </div>
+        <br/>
+        <div align="center">
+            [<a href="#" onclick="window.close();">ЗАКРИТИ</a>]
+        </div>
     </body>
 </html>
