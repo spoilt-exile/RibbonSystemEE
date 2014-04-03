@@ -64,7 +64,7 @@
                             </c:choose>
                             <c:set var="author" value="${message.authId}">
                             </c:set>
-                            <td>${author.login}</td>
+                            <td><a href="#" onClick="window.open('/Ribbon?command=USER_INFO&user=${author.login}', '_blank', 'Toolbar=0, Scrollbars=1, Resizable=0, Width=640, resize=no, Height=480');">${author.login}</a></td>
                             <td>${message.formatPostDate}</td>
                             <td>
                                 [Перевипустити]

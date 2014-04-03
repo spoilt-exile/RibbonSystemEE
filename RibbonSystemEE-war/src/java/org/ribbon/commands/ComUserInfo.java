@@ -38,7 +38,13 @@ public class ComUserInfo implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
-        User finded = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
+        String qUser = null;
+        if (request.getParameter("user") != null) {
+            qUser = request.getParameter("user");
+        } else {
+            qUser = request.getSession().getAttribute("username").toString();
+        }
+        User finded = usrBean.findByLogin(qUser);
         request.setAttribute("user", finded);
         request.setAttribute("groupList", finded.getGroupsList());
         return Router.COM_USER_INFO;

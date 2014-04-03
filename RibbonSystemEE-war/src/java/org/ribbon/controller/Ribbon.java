@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ribbon.commands.*;
-import org.ribbon.controller.Router;
 
 /**
  * Ribbon system controller.
@@ -50,10 +49,8 @@ public class Ribbon extends HttpServlet {
             page = command.execute(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
-            page = Router.ERROR_PAGE;
         } catch (IOException e){
             e.printStackTrace();
-            page = Router.ERROR_PAGE;
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);

@@ -38,13 +38,17 @@ public class ComMain implements ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
-        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
-        if (findedUser != null) {
-            usrBean.performLogin(findedUser);
-            return Router.MAIN_PAGE;
+        if (request.getSession().getAttribute("username") != null) {
+            User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
+            if (findedUser != null) {
+                usrBean.performLogin(findedUser);
+                return Router.MAIN_PAGE;
+            } else {
+                request.getSession().removeAttribute("username");
+                return Router.DEFAULT_PAGE;
+            }
         } else {
-            request.getSession().removeAttribute("username");
-            return Router.DEFAULT_PAGE;
+            return "/redirect.jsp";
         }
     }
 
