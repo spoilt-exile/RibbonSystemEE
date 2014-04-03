@@ -6,6 +6,14 @@
         <filter-name>UserFilter</filter-name>
         <filter-class>org.ribbon.filters.UserFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>org.ribbon.filters.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin-pages/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>UserFilter</filter-name>
         <url-pattern>/pages/*</url-pattern>

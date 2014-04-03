@@ -42,6 +42,7 @@ public class ComLogout implements ICommand{
         if (findedUser != null) {
             usrBean.performLogout(findedUser);
             request.getSession().removeAttribute("username");
+            request.getSession().removeAttribute("isAdmin");
         }
         return Router.REDIRECT_PAGE;
     }
