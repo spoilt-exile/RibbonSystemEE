@@ -27,17 +27,22 @@ public final class Router {
     /**
      * Generic route for ordinary user pages.
      */
-    public static final String GENERIC_PAGE_DIR = "/WEB-INF/pages/";
+    public static final String GENERIC_PAGE_DIR = "/pages/";
     
     /**
      * Generic route for administrator pages.
      */
-    public static final String ADMIN_PAGE_DIR = "/WEB-INF/admin-pages/";
+    public static final String ADMIN_PAGE_DIR = "/admin-pages/";
     
     /**
      * Default route (should be used if login failed).
      */
     public static final String DEFAULT_PAGE = "/login.jsp"; 
+    
+    /**
+     * Redirect to index.jsp.
+     */
+    public static final String REDIRECT_PAGE = "/redirect.jsp";
    
     /**
      * Main user UI route (use this to redirect logined users).

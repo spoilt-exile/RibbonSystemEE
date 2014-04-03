@@ -55,11 +55,6 @@ public enum CommandTypes {
     LIST_MESG(new ComListMesg()),
     
     /**
-     * HEADER command object.
-     */
-    HEADER(new ComHeader()),
-    
-    /**
      * POST_FORM command object.
      */
     POST_FORM(new ComPostForm()),

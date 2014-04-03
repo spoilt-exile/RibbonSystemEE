@@ -16,29 +16,44 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.commands;
+package org.ribbon.filters;
 
 import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.ribbon.commands.ICommand;
 import org.ribbon.controller.Router;
 
 /**
- * HEADER command class.
+ * Filter all unauthorized users from internal pages.
  * @author Stanislav Nepochatov
  */
-public class ComHeader implements ICommand {
+public class UserFilter implements Filter {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return Router.COM_HEADER;
+    public void init(FilterConfig filterConfig) throws ServletException {
+        //Pass
     }
 
     @Override
-    public Boolean isAuthRequired() {
-        return true;
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        if (httpRequest.getSession().getAttribute("username") == null) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher(Router.DEFAULT_PAGE);
+            dispatcher.forward(request, response);
+        } else {
+            chain.doFilter(request, response);
+        }
+    }
+
+    @Override
+    public void destroy() {
+        //Pass
     }
     
 }

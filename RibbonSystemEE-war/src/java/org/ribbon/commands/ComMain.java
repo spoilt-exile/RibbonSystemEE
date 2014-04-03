@@ -48,7 +48,7 @@ public class ComMain implements ICommand {
                 return Router.DEFAULT_PAGE;
             }
         } else {
-            return "/redirect.jsp";
+            return Router.REDIRECT_PAGE;
         }
     }
 

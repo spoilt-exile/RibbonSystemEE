@@ -12,10 +12,10 @@
         <title>ГОЛОВНА СТОРІНКА "СТРІЧКА"</title>
     </head>
     <frameset rows="95px,*" cols="*" border="2px">
-        <frame src="/Ribbon?command=HEADER" noresize scrolling="no">
+        <frame src="/pages/header.jsp" noresize scrolling="no" />
         <frameset rows="*" cols="20%,80%" border="2px">
-            <frame src="/Ribbon?command=LIST_DIRS">
-            <frame name="MSG" src="/Ribbon?command=LIST_MESG">
+            <frame src="/Ribbon?command=LIST_DIRS" />
+            <frame name="MSG" src="/Ribbon?command=LIST_MESG" />
         </frameset>
     </frameset>
 </html>
