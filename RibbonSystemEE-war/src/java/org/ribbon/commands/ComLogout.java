@@ -18,52 +18,37 @@
 
 package org.ribbon.commands;
 
+import org.ribbon.enteties.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.ribbon.controller.Router;
-import org.ribbon.enteties.User;
 import org.ribbon.beans.UserBean;
 import org.ribbon.service.Utils;
 
 /**
- * LOGIN command class.
+ * LOGOUT command (for exit from the system).
  * @author Stanislav Nepochatov
  */
-public class ComLogin implements ICommand {
+public class ComLogout implements ICommand{
     
     private UserBean usrBean;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usrBean = (UserBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/UserBean!org.ribbon.beans.UserBean");
-        User findedUser = usrBean.findByLogin(request.getParameter("login"));
-        if (findedUser == null) {
-            response.addHeader("login_error", "NOT_FOUND_OR_INCORRECT_PASSWD " + request.getParameter("login"));
-            return Router.DEFAULT_PAGE;
+        User findedUser = usrBean.findByLogin(request.getSession().getAttribute("username").toString());
+        if (findedUser != null) {
+            usrBean.performLogout(findedUser);
+            request.getSession().removeAttribute("username");
+            request.getSession().removeAttribute("isAdmin");
         }
-        if (findedUser.getPassw().equals(Utils.getHash(request.getParameter("passw")))) {
-            if (findedUser.getIsEnabled()) {
-                request.getSession().setAttribute("username", findedUser.getLogin());
-                if (findedUser.getIsAdmin()) {
-                    request.getSession().setAttribute("isAdmin", "true");
-                }
-                usrBean.performLogin(findedUser);
-                return Router.REDIRECT_PAGE;
-            } else {
-                response.addHeader("login_error", "USER_DISABLED " + request.getParameter("login"));
-                return Router.DEFAULT_PAGE;
-            }
-        } else {
-            response.addHeader("login_error", "NOT_FOUND_OR_INCORRECT_PASSWD " + request.getParameter("login"));
-            return Router.DEFAULT_PAGE;
-        }
+        return Router.REDIRECT_PAGE;
     }
 
     @Override
     public Boolean isAuthRequired() {
-        return false;
+        return true;
     }
     
 }

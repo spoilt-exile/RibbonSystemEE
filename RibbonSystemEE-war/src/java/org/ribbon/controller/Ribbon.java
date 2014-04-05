@@ -18,6 +18,7 @@
 
 package org.ribbon.controller;
 
+import org.ribbon.commands.ICommand;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

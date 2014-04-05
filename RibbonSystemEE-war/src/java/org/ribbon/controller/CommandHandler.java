@@ -18,6 +18,7 @@
 
 package org.ribbon.controller;
 
+import org.ribbon.commands.ICommand;
 import org.ribbon.commands.CommandTypes;
 import org.ribbon.commands.*;
 import javax.servlet.http.HttpServletRequest;

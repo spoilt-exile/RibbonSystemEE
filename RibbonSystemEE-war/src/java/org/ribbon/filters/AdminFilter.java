@@ -27,7 +27,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import org.ribbon.controller.Router;
+import org.ribbon.commands.Router;
 
 /**
  * Filter all unauthorized users from internal pages.
