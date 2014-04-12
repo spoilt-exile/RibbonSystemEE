@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * POST_FORM command class.
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComPostForm implements ICommand {
 

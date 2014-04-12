@@ -30,6 +30,7 @@ import org.ribbon.enteties.Directory;
  * Directory entity bean.
  * @author Stanislav Nepochatov
  * @see org.ribbon.jpa.enteties.Directory
+ * @deprecated This beans weren't genereted properly. Will be removed.
  */
 @Stateless
 public class DirectoryBean extends AbstractBean<Directory> {

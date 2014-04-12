@@ -29,6 +29,7 @@ import org.ribbon.service.Utils;
 /**
  * USER_INFO command class;
  * @author spoilt
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComUserInfo implements ICommand {
     

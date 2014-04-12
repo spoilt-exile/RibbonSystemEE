@@ -30,6 +30,7 @@ import org.ribbon.commands.*;
 /**
  * Ribbon system controller.
  * @author Stanislav Nepochatov
+ * @deprecated Replaced by FacesServlet.
  */
 public class Ribbon extends HttpServlet {
 

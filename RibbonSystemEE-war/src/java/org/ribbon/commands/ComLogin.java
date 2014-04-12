@@ -29,6 +29,7 @@ import org.ribbon.service.Utils;
 /**
  * LOGIN command class.
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComLogin implements ICommand {
     

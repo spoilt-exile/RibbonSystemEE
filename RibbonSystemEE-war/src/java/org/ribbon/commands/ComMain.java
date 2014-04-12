@@ -29,6 +29,7 @@ import org.ribbon.service.Utils;
 /**
  * MAIN command class (check session and load main page, used by default by calling root of controller).
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComMain implements ICommand {
     

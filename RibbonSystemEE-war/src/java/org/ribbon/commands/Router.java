@@ -21,6 +21,7 @@ package org.ribbon.commands;
 /**
  * Router table class.
  * @author Stanislav Nepochatov
+ * @deprecated Will be replaced by bean.
  */
 public final class Router {
     

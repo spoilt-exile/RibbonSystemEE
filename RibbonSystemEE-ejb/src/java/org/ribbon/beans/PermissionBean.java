@@ -27,6 +27,7 @@ import org.ribbon.enteties.Permission;
  * Permission entity bean.
  * @author Stanislav Nepochatov
  * @see org.ribbon.jpa.enteties.Permission
+ * @deprecated This beans weren't genereted properly. Will be removed.
  */
 @Stateless
 public class PermissionBean extends AbstractBean<Permission> {

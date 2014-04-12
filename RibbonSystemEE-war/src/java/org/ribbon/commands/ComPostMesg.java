@@ -34,6 +34,7 @@ import org.ribbon.service.Utils;
 /**
  * POST_MESG command class.
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComPostMesg implements ICommand {
     

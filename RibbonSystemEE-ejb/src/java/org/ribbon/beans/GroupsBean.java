@@ -26,6 +26,7 @@ import org.ribbon.enteties.Groups;
 /**
  * Grpups entity bean.
  * @author Stanislav Nepochatov
+ * @deprecated This beans weren't genereted properly. Will be removed.
  */
 @Stateless
 public class GroupsBean extends AbstractBean<Groups> {

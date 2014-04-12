@@ -28,6 +28,7 @@ import org.ribbon.service.Utils;
 /**
  * LIST_DIRS command class.
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComListDirs implements ICommand {
     

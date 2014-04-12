@@ -30,6 +30,7 @@ import org.ribbon.enteties.User;
  * Message entity bean.
  * @author Stanislav Nepochatov
  * @see org.ribbon.jpa.enteties.Message
+ * @deprecated This beans weren't genereted properly. Will be removed.
  */
 @Stateless
 public class UserBean extends AbstractBean<User> {

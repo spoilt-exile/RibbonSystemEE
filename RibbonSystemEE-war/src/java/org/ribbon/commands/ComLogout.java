@@ -29,6 +29,7 @@ import org.ribbon.service.Utils;
 /**
  * LOGOUT command (for exit from the system).
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class ComLogout implements ICommand{
     

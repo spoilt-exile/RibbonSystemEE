@@ -30,6 +30,7 @@ import org.ribbon.enteties.Directory;
  * Message entity bean.
  * @author Stanislav Nepochatov
  * @see org.ribbon.jpa.enteties.Message
+ * @deprecated This beans weren't genereted properly. Will be removed.
  */
 @Stateless
 public class MessageBean extends AbstractBean<Message> {

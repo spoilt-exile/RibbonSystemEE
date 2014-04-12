@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Simple command interface.
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public interface ICommand {
     

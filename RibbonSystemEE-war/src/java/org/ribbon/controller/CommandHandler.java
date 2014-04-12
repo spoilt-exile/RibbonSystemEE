@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Controller command handler;
  * @author Stanislav Nepochatov
+ * @deprecated Use managed beans instead. Will be removed soon.
  */
 public class CommandHandler {
     

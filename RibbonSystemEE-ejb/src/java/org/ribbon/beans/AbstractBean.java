@@ -24,6 +24,7 @@ import javax.persistence.EntityManager;
 /**
  * Abstract entity bean.
  * @author Stanislav Nepochatov
+ * @deprecated This beans weren't genereted properly. Will be removed.
  */
 public abstract class AbstractBean<T> {
     
