@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>ВХІД ДО СИСТЕМИ</title>
+        <link REL="stylesheet" type="text/css" href="/main.css"/>
+    </h:head>
+    <h:body>
+        <div align="center">
+        <div class="login-frame">
+            <img src="/images/logo.png" />
+            <h:form>
+                <h:outputLabel value="Логін"/><br/>
+                <h:inputText value="#{login.user.login}" required="true" requiredMessage="Введіть будь ласка логін!"/><br/>
+                <h:outputLabel value="Пароль"/><br/>
+                <h:inputSecret value="#{login.user.rawPassw}" required="true" requiredMessage="Введіть будь ласка пароль!"/><br/>
+                <h:commandButton value="Увійти" action="#{login.login()}"/>
+            </h:form>
+            <h:panelGroup rendered="#{login.loginError != null}">
+                <span class="ribbon_error_header">#{login.loginError}</span>
+            </h:panelGroup>
+        </div>
+        </div>
+    </h:body>
+</html>
+

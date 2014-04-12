@@ -37,17 +37,17 @@ public final class Router {
     /**
      * Default route (should be used if login failed).
      */
-    public static final String DEFAULT_PAGE = "/login.jsp"; 
+    public static final String DEFAULT_PAGE = "/login.jsf"; 
     
     /**
      * Redirect to index.jsp.
      */
-    public static final String REDIRECT_PAGE = "/redirect.jsp";
+    public static final String REDIRECT_PAGE = "/redirect.jsf";
    
     /**
      * Main user UI route (use this to redirect logined users).
      */
-    public static final String MAIN_PAGE = GENERIC_PAGE_DIR + "main.jsp";
+    public static final String MAIN_PAGE = "/index.jsf";
     
     /**
      * LIST_DIR command page.

@@ -253,6 +253,18 @@ public class User implements Serializable {
     public void setPassw(String passw) {
         this.passw = passw;
     }
+    
+    public String getRawPassw() {
+        return null;
+    }
+    
+    /**
+     * Set hash string of user password with specified raw password.
+     * @param raw raw password string;
+     */
+    public void setRawPassw(String raw) {
+        this.passw = Utils.getHash(raw);
+    }
 
     /**
      * Get date of user creation.
