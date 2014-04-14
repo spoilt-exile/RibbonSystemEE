@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,8 +23,9 @@ import javax.ejb.Local;
 import org.ribbon.enteties.User;
 
 /**
- *
- * @author spoilt
+ * Message entity bean.
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Message
  */
 @Local
 public interface UserFacadeLocal {
@@ -43,8 +44,23 @@ public interface UserFacadeLocal {
 
     int count();
     
+    /**
+     * Find user by login.
+     * @param login user name to search;
+     * @return finded user;
+     */
     public User findByLogin(String login);
     
+    /**
+     * Perform user entry update while login.
+     * @param logined user which just enter to the system;
+     */
     public void performLogin(User logined);
+    
+    /**
+     * Perform user entity update while logout.
+     * @param logined user which will exit from the system;
+     */
+    public void performLogout(User logined);
     
 }

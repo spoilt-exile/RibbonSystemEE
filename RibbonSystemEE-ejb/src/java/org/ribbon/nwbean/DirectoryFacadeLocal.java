@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,8 +23,9 @@ import javax.ejb.Local;
 import org.ribbon.enteties.Directory;
 
 /**
- *
- * @author spoilt
+ * Directory entity bean (local interface).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Directory
  */
 @Local
 public interface DirectoryFacadeLocal {
@@ -43,4 +44,23 @@ public interface DirectoryFacadeLocal {
 
     int count();
     
+    /**
+     * Get all directories sorted by path (for listing);
+     * @return list of directories;
+     */
+    public List<Directory> findAllSortByPath();
+    
+    /**
+     * Get directory by path.
+     * @param path directory search path;
+     * @return finded directory;
+     */
+    public Directory findByPath(String path);
+    
+    /**
+     * Get list with directory chain to last element.
+     * @param path directory path to search;
+     * @return list with all chain elements of search;
+     */
+    public List<Directory> findChain(String path);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,11 +20,13 @@ package org.ribbon.nwbean;
 
 import java.util.List;
 import javax.ejb.Local;
+import org.ribbon.enteties.Directory;
 import org.ribbon.enteties.Message;
 
 /**
- *
- * @author spoilt
+ * Message entity bean (local interface).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Message
  */
 @Local
 public interface MessageFacadeLocal {
@@ -42,5 +44,12 @@ public interface MessageFacadeLocal {
     List<Message> findRange(int[] range);
 
     int count();
+    
+    /**
+     * Find all messages by directory id and sort by it's id;
+     * @param dirId directory id to search;
+     * @return list of messages;
+     */
+    public List<Message> findByDirIdSortId(Directory dirId);
     
 }

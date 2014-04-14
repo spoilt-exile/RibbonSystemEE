@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,11 +24,16 @@ import javax.persistence.PersistenceContext;
 import org.ribbon.enteties.Groups;
 
 /**
- *
- * @author spoilt
+ * Grpups entity bean (local interface implementation).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.enteties.Groups
  */
 @Stateless
 public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacadeLocal {
+    
+    /**
+     * Linked entity manager.
+     */
     @PersistenceContext(unitName = "RibbonSystemPU")
     private EntityManager em;
 
@@ -37,6 +42,9 @@ public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacade
         return em;
     }
 
+    /**
+     * Default constructor.
+     */
     public GroupsFacade() {
         super(Groups.class);
     }

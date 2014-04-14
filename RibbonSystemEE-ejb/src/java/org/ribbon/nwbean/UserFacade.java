@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,11 +27,16 @@ import javax.persistence.TypedQuery;
 import org.ribbon.enteties.User;
 
 /**
- *
- * @author spoilt
+ * Message entity bean.
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Message
  */
-@Stateless(mappedName = "login")
+@Stateless
 public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal {
+    
+    /**
+     * Linked entity manager.
+     */
     @PersistenceContext(unitName = "RibbonSystemPU")
     private EntityManager em;
 
@@ -40,6 +45,9 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         return em;
     }
 
+    /**
+     * Default constructor.
+     */
     public UserFacade() {
         super(User.class);
     }
@@ -62,5 +70,10 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         logined.setIsActive(true);
         this.edit(logined);
     }
-    
+
+    @Override
+    public void performLogout(User logined) {
+        logined.setIsActive(false);
+        this.edit(logined);
+    }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,8 +23,9 @@ import javax.ejb.Local;
 import org.ribbon.enteties.Groups;
 
 /**
- *
- * @author spoilt
+ * Grpups entity bean (local interface).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.enteties.Groups
  */
 @Local
 public interface GroupsFacadeLocal {

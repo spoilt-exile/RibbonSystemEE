@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,17 +18,25 @@
 
 package org.ribbon.nwbean;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import org.ribbon.enteties.Directory;
 import org.ribbon.enteties.Message;
 
 /**
- *
- * @author spoilt
+ * Message entity bean (implementation).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Message
  */
 @Stateless
 public class MessageFacade extends AbstractFacade<Message> implements MessageFacadeLocal {
+    
+    /**
+     * Linked entity manager.
+     */
     @PersistenceContext(unitName = "RibbonSystemPU")
     private EntityManager em;
 
@@ -37,8 +45,19 @@ public class MessageFacade extends AbstractFacade<Message> implements MessageFac
         return em;
     }
 
+    /**
+     * Default constructor.
+     */
     public MessageFacade() {
         super(Message.class);
+    }
+
+    @Override
+    public List<Message> findByDirIdSortId(Directory dirId) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Message> tr = em.createNamedQuery("Message.findByDirIdSortId", Message.class);
+        tr.setParameter("dirId", dirId);
+        return tr.getResultList();
     }
     
 }

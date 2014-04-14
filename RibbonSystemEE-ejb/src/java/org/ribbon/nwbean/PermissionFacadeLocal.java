@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,8 +23,9 @@ import javax.ejb.Local;
 import org.ribbon.enteties.Permission;
 
 /**
- *
- * @author spoilt
+ * Permission entity bean (local interface).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Permission
  */
 @Local
 public interface PermissionFacadeLocal {

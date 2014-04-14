@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 spoilt
+ * Copyright (C) 2014 Stanislav Nepochatov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,11 +24,16 @@ import javax.persistence.PersistenceContext;
 import org.ribbon.enteties.Permission;
 
 /**
- *
- * @author spoilt
+ * Permission entity bean (implementation).
+ * @author Stanislav Nepochatov
+ * @see org.ribbon.jpa.enteties.Permission
  */
 @Stateless
 public class PermissionFacade extends AbstractFacade<Permission> implements PermissionFacadeLocal {
+    
+    /**
+     * Linked entity manager.
+     */
     @PersistenceContext(unitName = "RibbonSystemPU")
     private EntityManager em;
 
@@ -37,6 +42,9 @@ public class PermissionFacade extends AbstractFacade<Permission> implements Perm
         return em;
     }
 
+    /**
+     * Default constructor.
+     */
     public PermissionFacade() {
         super(Permission.class);
     }
