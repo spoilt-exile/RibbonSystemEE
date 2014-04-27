@@ -17,10 +17,10 @@
                 <h:inputSecret value="#{login.user.rawPassw}" required="true" requiredMessage="Введіть будь ласка пароль!"/><br/>
                 <h:commandButton value="Увійти" action="#{login.login()}"/>
             </h:form>
+        </div>
             <h:panelGroup rendered="#{login.loginError != null}">
                 <span class="ribbon_error_header">#{login.loginError}</span>
             </h:panelGroup>
-        </div>
         </div>
     </h:body>
 </html>

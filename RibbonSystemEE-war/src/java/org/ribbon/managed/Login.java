@@ -22,7 +22,6 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 import org.ribbon.commands.Router;
 import org.ribbon.nwbean.UserFacadeLocal;
 import org.ribbon.enteties.User;

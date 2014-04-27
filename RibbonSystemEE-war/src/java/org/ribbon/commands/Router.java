@@ -51,9 +51,9 @@ public final class Router {
     public static final String MAIN_PAGE = "/index.jsf";
     
     /**
-     * LIST_DIR command page.
+     * Directory listing page (left frame).
      */
-    public static final String COM_LIST_DIRS = GENERIC_PAGE_DIR + "listdirs.jsp";
+    public static final String COM_LIST_DIRS = GENERIC_PAGE_DIR + "listdirs.jsf";
     
     /**
      * HEADER command page.

@@ -3,10 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>ГОЛОВНА СТОРІНКА СИСТЕМИ</title>
     </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+    <frameset rows="95px,*" cols="*" border="2px">
+        <frame src="/pages/header.jsp" scrolling="no" />
+        <frameset rows="*" cols="20%,80%" border="2px">
+            <frame src="/pages/listdirs.jsf"/>
+            <frame name="MSG" src="/Ribbon?command=LIST_MESG" />
+        </frameset>
+    </frameset>
 </html>
 
