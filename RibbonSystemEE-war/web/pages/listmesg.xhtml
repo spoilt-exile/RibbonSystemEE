@@ -5,6 +5,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>ПОВІДОМЛЕННЯ</title>
+        <link REL="stylesheet" type="text/css" href="/main.css"/>
     </h:head>
     <h:body>
         <c:choose>
@@ -57,7 +58,7 @@
                             </c:choose>
                             <c:set var="author" value="#{message.authId}">
                             </c:set>
-                            <td><a href="#" onClick="window.open('#', '_blank', 'Toolbar=0, Scrollbars=1, Resizable=0, Width=640, resize=no, Height=480');">#{author.login}</a></td>
+                            <td><a href="#" onClick="window.open('/pages/userinfo.jsf?user=${author.login}', '_blank', 'Toolbar=0, Scrollbars=1, Resizable=0, Width=640, resize=no, Height=480');">#{author.login}</a></td>
                             <td>#{message.formatPostDate}</td>
                             <td>
                                 [Перевипустити]

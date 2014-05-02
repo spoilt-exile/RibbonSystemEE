@@ -71,6 +71,17 @@ public class Login {
             return Router.DEFAULT_PAGE;
         }
     }
+    
+    /**
+     * Logout user.
+     * @return redirect address;
+     */
+    public String logout() {
+        User logined = sesManaged.getCurrentUser();
+        usrBean.performLogout(logined);
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return Router.REDIRECT_PAGE;
+    }
 
     /**
      * @return the user

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>ЗАГОЛОВОК</title>
+        <link REL="stylesheet" type="text/css" href="/header.css"/>
+        <style>
+            form {
+                display: inline;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <table width="100%">
+            <tr>
+                <td align="left">
+                    <img src="/images/logo.png"/>
+                </td>
+                <td align="right" valign="bottom">
+                    #{ribbonSession.currentUser.login} 
+                    <c:if test="#{ribbonSession.currentUser.isAdmin}">
+                        [<a href="/admin-pages/menu.jsp" target="_blank">КЕРУВАННЯ</a>] 
+                    </c:if>
+                    [<a href="#" onClick="window.open('/pages/userinfo.jsf?user=${ribbonSession.currentUser.login}', '_blank', 'Toolbar=0, Scrollbars=1, Resizable=0, Width=640, resize=no, Height=480');">ІНФО</a>] 
+                    [<h:form><h:commandLink action="#{login.logout()}" value="ВИЙТИ" target="_top"/></h:form>]
+                </td>
+            </tr>
+        </table>
+    </h:body>
+</html>
+
