@@ -11,8 +11,10 @@
         <a href="/Ribbon?command=POST_FORM" target="MSG">НОВЕ ПОВІДОМЛЕННЯ</a>
         <hr noshade="true"/>
         <br/>
+        <h:form>
         <c:forEach var="directory" items="#{directoryLister.dirs}">
-            <a href="#" target="MSG">#{directory.chain}</a> <br/>
+            <h:commandLink action="#{messageLister.list(directory.id, directory.path)}" target="MSG" value="#{directory.chain}" /> <br/>
         </c:forEach>
+        </h:form>
     </h:body>
 </html>

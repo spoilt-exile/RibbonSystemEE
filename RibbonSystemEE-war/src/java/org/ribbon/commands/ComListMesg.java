@@ -49,7 +49,7 @@ public class ComListMesg implements ICommand {
         dirBean = (DirectoryBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/DirectoryBean!org.ribbon.beans.DirectoryBean");
         mesgBean = (MessageBean) Utils.getBean("java:global/RibbonSystemEE/RibbonSystemEE-ejb/MessageBean!org.ribbon.beans.MessageBean");
         if (request.getParameter("dirid") != null && request.getParameter("dirname") != null) {
-            Permission.ACCESS_STATE resolved = accBean.check(usrBean.findByLogin(request.getSession().getAttribute("username").toString()), dirBean, request.getParameter("dirname"));
+            /**Permission.ACCESS_STATE resolved = accBean.check(usrBean.findByLogin(request.getSession().getAttribute("username").toString()), dirBean, request.getParameter("dirname"));
             if (resolved.ordinal() >= Permission.ACCESS_STATE.MAY_READ.ordinal()) {
                 request.getSession().setAttribute("last_dir_name", request.getParameter("dirname"));
                 request.getSession().setAttribute("last_dir", request.getParameter("dirid"));
@@ -57,6 +57,7 @@ public class ComListMesg implements ICommand {
                 request.setAttribute("mlist", mesgBean.findByDirIdSortId(dirId));
             }
             request.setAttribute("acc_mode", resolved.ordinal());
+            **/
         }
         return Router.COM_LIST_MESG;
     }

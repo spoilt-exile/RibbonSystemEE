@@ -20,6 +20,7 @@ package org.ribbon.managed;
 
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.ribbon.commands.Router;
@@ -40,6 +41,10 @@ public class Login {
     private User user = new User();
     
     private String loginError = null;
+    
+    @ManagedProperty(value="#{ribbonSession}")
+    @Inject
+    private RibbonSession sesManaged;
 
     /**
      * Creates a new instance of Login
@@ -59,6 +64,7 @@ public class Login {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("isAdmin", "true");
             }
             usrBean.performLogin(findedUser);
+            sesManaged.setCurrentUser(findedUser);
             return Router.REDIRECT_PAGE;
         } else {
             setLoginError("Користувача не знайдено, чи невірний пароль.");

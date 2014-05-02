@@ -63,7 +63,7 @@ public final class Router {
     /**
      * LIST_MESG command page.
      */
-    public static final String COM_LIST_MESG = GENERIC_PAGE_DIR + "listmesg.jsp";
+    public static final String COM_LIST_MESG = GENERIC_PAGE_DIR + "listmesg.jsf";
     
     /**
      * POST_FORM command page.

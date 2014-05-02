@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/listdirs.jsp</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/managed/DirectoryLister.java</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/listdirs.xhtml</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/commands/ComListDirs.java</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/managed/Login.java</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/commands/Router.java</file>
+            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/index.xhtml</file>
+            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/listmesg.jsp</file>
         </group>
     </open-files>
 </project-private>

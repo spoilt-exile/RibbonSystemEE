@@ -22,6 +22,7 @@ import org.ribbon.enteties.Permission;
 import org.ribbon.enteties.Groups;
 import org.ribbon.enteties.Directory;
 import org.ribbon.enteties.User;
+import org.ribbon.nwbean.DirectoryFacadeLocal;
 import java.util.List;
 import java.util.ListIterator;
 import javax.ejb.Stateless;
@@ -41,7 +42,7 @@ public class AccessChecker {
      * @param target name of target directory;
      * @return state of access checking;
      */
-    public Permission.ACCESS_STATE check(User initiator, DirectoryBean dirBean, String target) {
+    public Permission.ACCESS_STATE check(User initiator, DirectoryFacadeLocal dirBean, String target) {
         if (initiator.getLogin().equals("root")) {
             return Permission.ACCESS_STATE.MAY_ADMIN;
         }
