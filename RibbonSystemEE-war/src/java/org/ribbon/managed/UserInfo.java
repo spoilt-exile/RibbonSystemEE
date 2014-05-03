@@ -21,7 +21,6 @@ package org.ribbon.managed;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import org.ribbon.commands.Router;
 import org.ribbon.enteties.User;
 import org.ribbon.nwbean.UserFacadeLocal;
 

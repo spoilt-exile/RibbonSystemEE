@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Повідомлення випущено!</title>
+        <script type="text/javascript">
+            setTimeout(function(){window.close()}, 8000);
+        </script>
+        <link REL="stylesheet" type="text/css" href="/main.css"/>
+    </h:head>
+    <h:body>
+        <div align="center">
+        <div class="info-frame">
+            СИСТЕМНЕ ПОВІДОМЛЕННЯ<br/>
+            <br/>
+            Номер повідомлення: #{poster.postMessage.id}<br/>
+            Автор: #{poster.postMessage.authId.login}<br/>
+            <br/>
+            Напрямки:<br/>
+            <c:forEach var="directory" items="#{poster.postMessage.dirId}">
+                <i>(#{directory.path})</i><br/>
+            </c:forEach>
+        </div>
+            [<a href="#" onclick="window.close();">ЗАКРИТИ</a>]
+        </div>
+    </h:body>
+</html>
+

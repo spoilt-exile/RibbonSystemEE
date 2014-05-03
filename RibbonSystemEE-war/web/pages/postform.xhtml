@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>НОВЕ ПОВІДОМЛЕННЯ</title>
+        <link REL="stylesheet" type="text/css" href="/main.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <table border="1px">
+                <tr>
+                    <td>
+                        <h:selectManyCheckbox layout="pageDirection" value="#{poster.dirs}" required="true" requiredMessage="Оберіть хоч б один напрямок!">
+                            <c:forEach var="directory" items="#{directoryLister.dirs}">
+                                <f:selectItem itemEscaped="false" itemValue="#{directory.path}" itemLabel="#{directory.path}"/>
+                            </c:forEach>
+                        </h:selectManyCheckbox>
+                    </td>
+                    <td>
+                        <h:outputLabel value="Заголовок"/><br/>
+                        <h:inputText value="#{poster.postMessage.header}" required="true" requiredMessage="Введіть будь ласка заголовок!" size="75"/><br/>
+                        <h:outputLabel value="Терміново"/><h:selectBooleanCheckbox value="#{poster.postMessage.isUrgent}"/><br/>
+                        <h:outputLabel value="Текст повідомлення" /><br/>
+                        <h:inputTextarea value="#{poster.postMessage.body}" required="true" requiredMessage="Введіть будь ласка текст!" cols="100" rows="15"/>
+                    </td>
+                </tr>
+            </table>
+            <h:commandButton type="submit" value="Випустити" action="#{poster.post()}"/>
+            <h:commandButton type="reset" value="Скасувати"/>
+        </h:form>
+    </h:body>
+</html>
+
