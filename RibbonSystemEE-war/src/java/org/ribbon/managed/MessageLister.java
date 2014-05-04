@@ -26,7 +26,7 @@ import javax.inject.Inject;
 import org.ribbon.nwbean.MessageFacadeLocal;
 import org.ribbon.nwbean.UserFacadeLocal;
 import org.ribbon.beans.AccessChecker;
-import org.ribbon.commands.Router;
+import org.ribbon.enteties.Directory;
 import org.ribbon.enteties.Message;
 import org.ribbon.enteties.Permission;
 import org.ribbon.nwbean.DirectoryFacadeLocal;
@@ -62,6 +62,11 @@ public class MessageLister {
     private RibbonSession sesManaged;
     
     /**
+     * Directory id.
+     */
+    private String id;
+    
+    /**
      * Access mode for directory.
      */
     private int accessMode;
@@ -71,15 +76,18 @@ public class MessageLister {
      */
     private List<Message> messages;
     
-    public String list(String dirId, String dirName) {
+    /**
+     * Load messages list and set access mode.
+     */
+    public void list() {
         Permission.ACCESS_STATE resolved;
-        resolved = accBean.check(usrBean.findByLogin(sesManaged.getCurrentUser().getLogin()), dirBean, dirName);
+        Directory swDir = dirBean.find(new Integer(id));
+        resolved = accBean.check(usrBean.findByLogin(sesManaged.getCurrentUser().getLogin()), dirBean, swDir.getPath());
         if (resolved.ordinal() >= Permission.ACCESS_STATE.MAY_READ.ordinal()) {
-            sesManaged.setCurrentDir(dirBean.findByPath(dirName));
-            setMessages(mesgBean.findByDirIdSortId(dirBean.findByPath(dirName)));
+            sesManaged.setCurrentDir(swDir);
+            setMessages(mesgBean.findByDirIdSortId(swDir));
             setAccessMode(resolved.ordinal());
         }
-        return Router.COM_LIST_MESG;
     }
 
     /**
@@ -112,5 +120,21 @@ public class MessageLister {
      */
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    /**
+     * Get directory id.
+     * @return the string with id;
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Set directory id.
+     * @param id the id to set;
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 }

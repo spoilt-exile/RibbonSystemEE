@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Список напрямків</title>
         <link REL="stylesheet" type="text/css" href="/main.css"/>
@@ -11,10 +12,11 @@
         <a href="#" onClick="window.open('/pages/postform.jsf', '_blank', 'Toolbar=0, Scrollbars=1, Resizable=0, Width=1000, resize=no, Height=400');">НОВЕ ПОВІДОМЛЕННЯ</a>
         <hr noshade="true"/>
         <br/>
-        <h:form>
         <c:forEach var="directory" items="#{directoryLister.dirs}">
-            <h:commandLink action="#{messageLister.list(directory.id, directory.path)}" target="MSG" value="#{directory.chain}" /> <br/>
+            <h:outputLink value="/pages/listmesg.jsf" target="MSG">
+                <h:outputText value="#{directory.chain}"/>
+                <f:param name="id" value="#{directory.id}"/>
+            </h:outputLink><br/>
         </c:forEach>
-        </h:form>
     </h:body>
 </html>

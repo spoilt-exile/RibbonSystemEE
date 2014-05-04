@@ -1,8 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:metadata>
+        <f:viewParam name="id" value="#{messageLister.id}"/>
+        <f:viewAction action="#{messageLister.list()}"/>
+    </f:metadata>
     <h:head>
         <title>ПОВІДОМЛЕННЯ</title>
         <link REL="stylesheet" type="text/css" href="/main.css"/>
@@ -50,10 +55,20 @@
                         <tr>
                             <c:choose>
                                 <c:when test="#{message.isUrgent}">
-                                    <td><a href="#" target="MSG"><font color="red">#{message.header}</font></a></td>
+                                    <td>
+                                        <h:outputLink value="/pages/viewmesg.jsf" target="MSG">
+                                            <h:outputText value="#{message.header}"/>
+                                            <f:param name="id" value="#{message.id}"/>
+                                        </h:outputLink>
+                                    </td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td><a href="#" target="MSG">#{message.header}</a></td>
+                                    <td>
+                                        <h:outputLink value="/pages/viewmesg.jsf" target="MSG">
+                                            <h:outputText value="#{message.header}"/>
+                                            <f:param name="id" value="#{message.id}"/>
+                                        </h:outputLink>
+                                    </td>
                                 </c:otherwise>
                             </c:choose>
                             <c:set var="author" value="#{message.authId}">

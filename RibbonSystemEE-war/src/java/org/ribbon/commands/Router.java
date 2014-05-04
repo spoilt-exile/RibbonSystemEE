@@ -68,16 +68,16 @@ public final class Router {
     /**
      * POST_FORM command page.
      */
-    public static final String COM_POST_FORM = GENERIC_PAGE_DIR + "postform.jsp";
+    public static final String COM_POST_FORM = GENERIC_PAGE_DIR + "postform.jsf";
     
     /**
      * VIEW_MESG command page.
      */
-    public static final String COM_VIEW_MESG = GENERIC_PAGE_DIR + "viewmesg.jsp";
+    public static final String COM_VIEW_MESG = GENERIC_PAGE_DIR + "viewmesg.jsf";
     
     /**
      * USER_INFO command page.
      */
-    public static final String COM_USER_INFO = GENERIC_PAGE_DIR + "userinfo.jsp";
+    public static final String COM_USER_INFO = GENERIC_PAGE_DIR + "userinfo.jsf";
     
 }

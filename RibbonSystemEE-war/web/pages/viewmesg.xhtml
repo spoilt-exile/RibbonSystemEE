@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:metadata>
+        <f:viewParam name="id" value="#{viewver.id}"/>
+        <f:viewAction action="#{viewver.loadMessage()}"/>
+    </f:metadata>
+    <h:head>
+        <title>ПЕРЕГЛЯД ПОВІДОМЛЕННЯ</title>
+        <link REL="stylesheet" type="text/css" href="/main.css"/>
+    </h:head>
+    <h:body>
+        <h:outputLink value="/pages/listmesg.jsf" target="MSG">
+            <h:outputText value="НАЗАД"/>
+            <f:param name="id" value="#{ribbonSession.currentDir.id}"/>
+        </h:outputLink><br/>
+        <b>ЗАГОЛОВОК:</b> #{viewver.viewMessage.header} <br/>
+        <b>АВТОР:</b> ${viewver.viewMessage.authId.login} (${viewver.viewMessage.authId.description}) <br/>
+        <b>ДАТА ВИПУСКУ:</b> #{viewver.viewMessage.postDate} <br/>
+        <c:if test="${viewver.viewMessage.isUrgent}">
+            <b><font color="red">ТЕРМІНОВО!</font></b><br/>
+        </c:if>
+        <b>НАПРЯМКИ:</b><br/>
+            <c:forEach var="directory" items="#{viewver.viewMessage.dirId}">
+                <i>(#{directory.path})</i><br/>
+            </c:forEach>
+        <br/>
+        <h:outputText escape="false" value="#{viewver.viewMessage.text}"/>
+    </h:body>
+</html>
+

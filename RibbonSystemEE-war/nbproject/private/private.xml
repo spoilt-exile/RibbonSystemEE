@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/managed/Poster.java</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/postform.jsp</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/commands/ComPostMesg.java</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/postform.xhtml</file>
-            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/src/java/org/ribbon/managed/MessageLister.java</file>
+            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/viewmesg.xhtml</file>
+            <file>file:/home/spoilt/BIONIC/JAVA%20EE%20(E-11)/RibbonSystemEE/RibbonSystemEE-war/web/pages/viewmesg.jsp</file>
         </group>
     </open-files>
 </project-private>
