@@ -19,7 +19,7 @@
         </h:outputLink><br/>
         <b>ЗАГОЛОВОК:</b> #{viewver.viewMessage.header} <br/>
         <b>АВТОР:</b> ${viewver.viewMessage.authId.login} (${viewver.viewMessage.authId.description}) <br/>
-        <b>ДАТА ВИПУСКУ:</b> #{viewver.viewMessage.postDate} <br/>
+        <b>ДАТА ВИПУСКУ:</b> #{viewver.viewMessage.formatPostDate} <br/>
         <c:if test="${viewver.viewMessage.isUrgent}">
             <b><font color="red">ТЕРМІНОВО!</font></b><br/>
         </c:if>

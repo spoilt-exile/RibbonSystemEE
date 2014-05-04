@@ -1,38 +1,42 @@
 /** Body style override **/
 body {
-  background-color: #f2f2f2;
-	font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
+    background-color: #f2f2f2;
+    font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
 }
 
 /** Link style override **/
 a {
-  color: #24589d;
+    color: #24589d;
+}
+
+.urgent {
+    color: #b30000;
 }
 
 /** Error class: header **/
 .ribbon_error_header {
-	color: #b30000;
- 	font-weight: bold;
-  font-size: 12pt;
-  font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
+    color: #b30000;
+    font-weight: bold;
+    font-size: 12pt;
+    font-family: "PT Sans", "Liberation Sans", "Calibri", sans-serif;
 }
 
 /** Login frame **/
 .login-frame {
-	width: 250px;
-  color: #ffffff;
-  border: 1px solid #e51e1e;
-  border-radius: 9px;
-  padding: 5px 5px 5px;
-  background-color: #2d69aa;
+    width: 250px;
+    color: #ffffff;
+    border: 1px solid #e51e1e;
+    border-radius: 9px;
+    padding: 5px 5px 5px;
+    background-color: #2d69aa;
 }
 
 /** User info frame **/
 .info-frame {
-	width: 600px;
-  color: #ffffff;
-  border: 1px solid #e51e1e;
-  border-radius: 9px;
-  padding: 5px 5px 5px;
-  background-color: #2d69aa;
+    width: 600px;
+    color: #ffffff;
+    border: 1px solid #e51e1e;
+    border-radius: 9px;
+    padding: 5px 5px 5px;
+    background-color: #2d69aa;
 }

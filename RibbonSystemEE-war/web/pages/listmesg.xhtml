@@ -56,7 +56,7 @@
                             <c:choose>
                                 <c:when test="#{message.isUrgent}">
                                     <td>
-                                        <h:outputLink value="/pages/viewmesg.jsf" target="MSG">
+                                        <h:outputLink value="/pages/viewmesg.jsf" target="MSG" styleClass="urgent">
                                             <h:outputText value="#{message.header}"/>
                                             <f:param name="id" value="#{message.id}"/>
                                         </h:outputLink>
