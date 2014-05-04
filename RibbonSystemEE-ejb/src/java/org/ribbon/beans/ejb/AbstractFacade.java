@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.beans;
+package org.ribbon.beans.ejb;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,9 +24,8 @@ import javax.persistence.EntityManager;
 /**
  * Abstract entity bean.
  * @author Stanislav Nepochatov
- * @deprecated This beans weren't genereted properly. Will be removed.
  */
-public abstract class AbstractBean<T> {
+public abstract class AbstractFacade<T> {
     
     /**
      * Internal type of bean.
@@ -37,7 +36,7 @@ public abstract class AbstractBean<T> {
      * Constructor of bean.
      * @param entityClass class to init;
      */
-    public AbstractBean(Class<T> entityClass) {
+    public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -106,7 +105,7 @@ public abstract class AbstractBean<T> {
 
     /**
      * Get count of enteties;
-     * @return 
+     * @return total count of entities with specified type;
      */
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();

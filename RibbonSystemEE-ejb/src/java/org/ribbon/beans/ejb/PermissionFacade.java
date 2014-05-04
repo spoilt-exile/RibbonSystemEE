@@ -16,20 +16,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.beans;
+package org.ribbon.beans.ejb;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.ribbon.enteties.Groups;
+import org.ribbon.enteties.Permission;
 
 /**
- * Grpups entity bean.
+ * Permission entity bean (implementation).
  * @author Stanislav Nepochatov
- * @deprecated This beans weren't genereted properly. Will be removed.
+ * @see org.ribbon.jpa.enteties.Permission
  */
 @Stateless
-public class GroupsBean extends AbstractBean<Groups> {
+public class PermissionFacade extends AbstractFacade<Permission> implements PermissionFacadeLocal {
     
     /**
      * Linked entity manager.
@@ -45,8 +45,8 @@ public class GroupsBean extends AbstractBean<Groups> {
     /**
      * Default constructor.
      */
-    public GroupsBean() {
-        super(Groups.class);
+    public PermissionFacade() {
+        super(Permission.class);
     }
     
 }

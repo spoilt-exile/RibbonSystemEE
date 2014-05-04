@@ -16,13 +16,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.beans;
+package org.ribbon.beans.session;
 
 import org.ribbon.enteties.Permission;
 import org.ribbon.enteties.Groups;
 import org.ribbon.enteties.Directory;
 import org.ribbon.enteties.User;
-import org.ribbon.nwbean.DirectoryFacadeLocal;
+import org.ribbon.beans.ejb.DirectoryFacadeLocal;
 import java.util.List;
 import java.util.ListIterator;
 import javax.ejb.Stateless;

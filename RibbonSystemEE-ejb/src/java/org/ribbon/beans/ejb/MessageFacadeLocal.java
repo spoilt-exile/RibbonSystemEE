@@ -16,32 +16,40 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.nwbean;
+package org.ribbon.beans.ejb;
 
 import java.util.List;
 import javax.ejb.Local;
-import org.ribbon.enteties.Groups;
+import org.ribbon.enteties.Directory;
+import org.ribbon.enteties.Message;
 
 /**
- * Grpups entity bean (local interface).
+ * Message entity bean (local interface).
  * @author Stanislav Nepochatov
- * @see org.ribbon.enteties.Groups
+ * @see org.ribbon.jpa.enteties.Message
  */
 @Local
-public interface GroupsFacadeLocal {
+public interface MessageFacadeLocal {
 
-    void create(Groups groups);
+    void create(Message message);
 
-    void edit(Groups groups);
+    void edit(Message message);
 
-    void remove(Groups groups);
+    void remove(Message message);
 
-    Groups find(Object id);
+    Message find(Object id);
 
-    List<Groups> findAll();
+    List<Message> findAll();
 
-    List<Groups> findRange(int[] range);
+    List<Message> findRange(int[] range);
 
     int count();
+    
+    /**
+     * Find all messages by directory id and sort by it's id;
+     * @param dirId directory id to search;
+     * @return list of messages;
+     */
+    public List<Message> findByDirIdSortId(Directory dirId);
     
 }

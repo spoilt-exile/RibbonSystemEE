@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.beans;
+package org.ribbon.beans.ejb;
 
 import java.util.Date;
 import javax.ejb.Stateless;
@@ -30,10 +30,9 @@ import org.ribbon.enteties.User;
  * Message entity bean.
  * @author Stanislav Nepochatov
  * @see org.ribbon.jpa.enteties.Message
- * @deprecated This beans weren't genereted properly. Will be removed.
  */
 @Stateless
-public class UserBean extends AbstractBean<User> {
+public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal {
     
     /**
      * Linked entity manager.
@@ -49,15 +48,11 @@ public class UserBean extends AbstractBean<User> {
     /**
      * Default constructor.
      */
-    public UserBean() {
+    public UserFacade() {
         super(User.class);
     }
-    
-    /**
-     * Find user by login.
-     * @param login user name to search;
-     * @return finded user;
-     */
+
+    @Override
     public User findByLogin(String login) {
         EntityManager em = this.getEntityManager();
         TypedQuery<User> tr = em.createNamedQuery("User.findByLogin", User.class);
@@ -68,21 +63,15 @@ public class UserBean extends AbstractBean<User> {
             return null;
         }
     }
-    
-    /**
-     * Perform user entry update while login.
-     * @param logined user which just enter to the system;
-     */
+
+    @Override
     public void performLogin(User logined) {
         logined.setLogDate(new Date());
         logined.setIsActive(true);
         this.edit(logined);
     }
-    
-    /**
-     * Perform user entity update while logout.
-     * @param logined user which will exit from the system;
-     */
+
+    @Override
     public void performLogout(User logined) {
         logined.setIsActive(false);
         this.edit(logined);

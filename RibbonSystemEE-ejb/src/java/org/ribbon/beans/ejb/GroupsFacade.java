@@ -16,23 +16,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.nwbean;
+package org.ribbon.beans.ejb;
 
-import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import org.ribbon.enteties.User;
+import org.ribbon.enteties.Groups;
 
 /**
- * Message entity bean.
+ * Grpups entity bean (local interface implementation).
  * @author Stanislav Nepochatov
- * @see org.ribbon.jpa.enteties.Message
+ * @see org.ribbon.enteties.Groups
  */
 @Stateless
-public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal {
+public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacadeLocal {
     
     /**
      * Linked entity manager.
@@ -48,32 +45,8 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     /**
      * Default constructor.
      */
-    public UserFacade() {
-        super(User.class);
+    public GroupsFacade() {
+        super(Groups.class);
     }
-
-    @Override
-    public User findByLogin(String login) {
-        EntityManager em = this.getEntityManager();
-        TypedQuery<User> tr = em.createNamedQuery("User.findByLogin", User.class);
-        tr.setParameter("login", login);
-        try {
-            return tr.getSingleResult();
-        } catch (NoResultException ex) {
-            return null;
-        }
-    }
-
-    @Override
-    public void performLogin(User logined) {
-        logined.setLogDate(new Date());
-        logined.setIsActive(true);
-        this.edit(logined);
-    }
-
-    @Override
-    public void performLogout(User logined) {
-        logined.setIsActive(false);
-        this.edit(logined);
-    }
+    
 }

@@ -16,28 +16,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.commands;
+package org.ribbon.beans.ejb;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import javax.ejb.Local;
+import org.ribbon.enteties.Groups;
 
 /**
- * POST_FORM command class.
+ * Grpups entity bean (local interface).
  * @author Stanislav Nepochatov
- * @deprecated Use managed beans instead. Will be removed soon.
+ * @see org.ribbon.enteties.Groups
  */
-public class ComPostForm implements ICommand {
+@Local
+public interface GroupsFacadeLocal {
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return Router.COM_POST_FORM;
-    }
+    void create(Groups groups);
 
-    @Override
-    public Boolean isAuthRequired() {
-        return true;
-    }
+    void edit(Groups groups);
+
+    void remove(Groups groups);
+
+    Groups find(Object id);
+
+    List<Groups> findAll();
+
+    List<Groups> findRange(int[] range);
+
+    int count();
     
 }

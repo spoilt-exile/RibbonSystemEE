@@ -16,23 +16,23 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.nwbean;
+package org.ribbon.beans.ejb;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.ribbon.enteties.Directory;
-import org.ribbon.enteties.Message;
 
 /**
- * Message entity bean (implementation).
+ * Directory entity bean (implementation).
  * @author Stanislav Nepochatov
- * @see org.ribbon.jpa.enteties.Message
+ * @see org.ribbon.jpa.enteties.Directory
  */
 @Stateless
-public class MessageFacade extends AbstractFacade<Message> implements MessageFacadeLocal {
+public class DirectoryFacade extends AbstractFacade<Directory> implements DirectoryFacadeLocal {
     
     /**
      * Linked entity manager.
@@ -48,16 +48,38 @@ public class MessageFacade extends AbstractFacade<Message> implements MessageFac
     /**
      * Default constructor.
      */
-    public MessageFacade() {
-        super(Message.class);
+    public DirectoryFacade() {
+        super(Directory.class);
     }
 
     @Override
-    public List<Message> findByDirIdSortId(Directory dirId) {
-        EntityManager em = this.getEntityManager();
-        TypedQuery<Message> tr = em.createNamedQuery("Message.findByDirIdSortId", Message.class);
-        tr.setParameter("dirId", dirId);
-        return tr.getResultList();
+    public List<Directory> findAllSortByPath() {
+        return this.getEntityManager().createNamedQuery("Directory.findAllSortPath", Directory.class).getResultList();
     }
-    
+
+    @Override
+    public Directory findByPath(String path) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Directory> tr = em.createNamedQuery("Directory.findByPath", Directory.class);
+        tr.setParameter("path", path);
+        return tr.getSingleResult();
+    }
+
+    @Override
+    public List<Directory> findChain(String path) {
+        String[] chunks = path.split("\\.");
+        List<Directory> rList = new ArrayList<Directory>(chunks.length);
+        if (chunks.length == 1) {
+            rList.add(this.findByPath(path));
+        } else {
+            String currPath = chunks[0];
+            for (int index = 0; index < chunks.length; index++) {
+                rList.add(this.findByPath(currPath));
+                if (index < chunks.length - 1) {
+                    currPath += "." + chunks[index + 1];
+                }
+            }
+        }
+        return rList;
+    }
 }

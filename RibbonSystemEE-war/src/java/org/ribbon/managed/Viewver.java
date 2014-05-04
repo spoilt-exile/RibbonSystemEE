@@ -22,7 +22,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import org.ribbon.enteties.Message;
-import org.ribbon.nwbean.MessageFacadeLocal;
+import org.ribbon.beans.ejb.MessageFacadeLocal;
 
 /**
  * Message viewver.

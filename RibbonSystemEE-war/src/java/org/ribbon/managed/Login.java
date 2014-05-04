@@ -24,7 +24,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.ribbon.commands.Router;
-import org.ribbon.nwbean.UserFacadeLocal;
+import org.ribbon.beans.ejb.UserFacadeLocal;
 import org.ribbon.enteties.User;
 
 /**

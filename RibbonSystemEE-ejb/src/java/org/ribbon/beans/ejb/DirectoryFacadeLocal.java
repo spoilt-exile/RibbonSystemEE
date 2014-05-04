@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.nwbean;
+package org.ribbon.beans.ejb;
 
 import java.util.List;
 import javax.ejb.Local;

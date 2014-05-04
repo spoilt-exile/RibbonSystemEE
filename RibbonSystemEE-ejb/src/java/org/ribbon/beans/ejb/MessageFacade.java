@@ -16,20 +16,23 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package org.ribbon.nwbean;
+package org.ribbon.beans.ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.ribbon.enteties.Groups;
+import javax.persistence.TypedQuery;
+import org.ribbon.enteties.Directory;
+import org.ribbon.enteties.Message;
 
 /**
- * Grpups entity bean (local interface implementation).
+ * Message entity bean (implementation).
  * @author Stanislav Nepochatov
- * @see org.ribbon.enteties.Groups
+ * @see org.ribbon.jpa.enteties.Message
  */
 @Stateless
-public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacadeLocal {
+public class MessageFacade extends AbstractFacade<Message> implements MessageFacadeLocal {
     
     /**
      * Linked entity manager.
@@ -45,8 +48,16 @@ public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacade
     /**
      * Default constructor.
      */
-    public GroupsFacade() {
-        super(Groups.class);
+    public MessageFacade() {
+        super(Message.class);
+    }
+
+    @Override
+    public List<Message> findByDirIdSortId(Directory dirId) {
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Message> tr = em.createNamedQuery("Message.findByDirIdSortId", Message.class);
+        tr.setParameter("dirId", dirId);
+        return tr.getResultList();
     }
     
 }

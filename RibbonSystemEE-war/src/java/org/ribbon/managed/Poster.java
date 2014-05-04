@@ -27,8 +27,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import org.ribbon.enteties.Directory;
 import org.ribbon.enteties.Message;
-import org.ribbon.nwbean.DirectoryFacadeLocal;
-import org.ribbon.nwbean.MessageFacadeLocal;
+import org.ribbon.beans.ejb.DirectoryFacadeLocal;
+import org.ribbon.beans.ejb.MessageFacadeLocal;
 
 /**
  * Post message bean.
